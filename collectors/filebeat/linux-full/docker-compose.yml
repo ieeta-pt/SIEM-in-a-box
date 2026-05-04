@@ -1,0 +1,48 @@
+# ==============================================================================
+#   Docker Compose — Filebeat na VM alvo (Ubuntu Server)
+#
+#   Uso:
+#     1. Copiar esta pasta (linux-full/) para a VM
+#     2. Editar filebeat.yml: substituir <IP_DO_SIEM>
+#     3. docker compose up -d
+#
+#   Pré-requisitos na VM:
+#     - Docker instalado
+#     - auditd instalado e ativo (sudo apt install auditd)
+# ==============================================================================
+
+services:
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.19.7
+    container_name: filebeat
+    restart: unless-stopped
+
+    # Root necessário para ler ficheiros de log protegidos do host
+    # (/var/log/auth.log, /var/log/audit/audit.log)
+    user: root
+
+    # Desativar a verificação estrita de permissões do ficheiro de config
+    # (necessário quando o ficheiro é montado via volume)
+    command: filebeat -e --strict.perms=false
+
+    volumes:
+      # Configuração do Filebeat (read-only)
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+
+      # Logs do host montados no container (read-only)
+      # O container lê os ficheiros como se estivesse no host
+      - /var/log:/var/log:ro
+
+      # Persistência da posição de leitura (registry)
+      # Sem isto, o Filebeat recomeça do início a cada reinício do container
+      - filebeat-registry:/usr/share/filebeat/data
+
+    # Não expõe portas — apenas envia dados para o Kafka externo
+    network_mode: host
+    # network_mode: host garante que o container resolve o IP do SIEM
+    # da mesma forma que o host. Alternativa: usar a rede bridge e
+    # garantir que <IP_DO_SIEM> é acessível a partir do container.
+
+volumes:
+  filebeat-registry:
+    driver: local

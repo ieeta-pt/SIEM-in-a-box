@@ -1,0 +1,30 @@
+# ==============================================
+# Filebeat — Collector for Linux Auditd (raw)
+# ==============================================
+
+filebeat.inputs:
+  - type: log
+    id: linux-auditd-raw
+    enabled: true
+    paths:
+      - /var/log/audit/audit.log
+    fields:
+      source_type: linux-auditd
+    fields_under_root: true
+    # Auditd generates many lines — increase the buffer
+    harvester_buffer_size: 65536
+
+output.kafka:
+  hosts: ["<IP_DO_SIEM>:9094"]
+  topic: "logs-linux-audit-default"
+  codec.json:
+    pretty: false
+  required_acks: 1
+  compression: gzip
+
+logging.level: warning
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat-auditd
+  keepfiles: 5

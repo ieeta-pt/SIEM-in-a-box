@@ -1,0 +1,56 @@
+#================================
+#   Fleet Server Configuration
+#================================
+#
+# IMPORTANT: This file contains ONLY the minimum required for Fleet Server to initialize.
+# All business policies are managed by Terraform (terraform/)
+# DO NOT add policies here — add them in terraform/policies/
+
+# ── server ──────────────────────────────────────────────────────────────────
+server.host: "0.0.0.0"
+telemetry.enabled: "true"
+
+# APM for monitoring Kibana itself
+elastic:
+  apm:
+    active: true
+    serverUrl: "http://fleet-server:8200"
+    secretToken: ${ELASTIC_APM_SECRET_TOKEN}
+
+# ── Fleet Server Host ──────────────────────────────────────────────────────────
+# The URL that external Elastic Agents use for enrollment.
+# Replace with the public IP or DNS
+xpack.fleet.fleetServerHosts:
+  - id: "default-fleet-server"
+    name: "Fleet Server Default"
+    is_default: true
+    host_urls:
+      - "https://192.168.122.1:8220"
+    is_internal: false
+
+# ── Base Info ───────────────────────────────────────────────────────────
+# Only fleet_server is needed here for bootstrap.
+# Terraform installs the remaining integrations.
+xpack.fleet.packages:
+  - name: "fleet_server"
+    version: "latest"
+
+  # ── Fleet Server Policy ───────────────────────────────────────────────────
+  # This policy is REQUIRED here — Fleet Server needs it to initialize.
+  # It is referenced by FLEET_SERVER_POLICY_ID in docker-compose.yml.
+  # DO NOT remove. DO NOT move to Terraform.
+
+xpack.fleet.agentPolicies:
+  - name: "Fleet Server Policy"
+    id: "fleet-server-policy"
+    namespace: "default"
+    is_default_fleet_server: true
+    is_managed: false
+    monitoring_enabled:
+      - logs
+      - metrics
+    package_policies:
+      - name: "fleet_server-1"
+        id: "fleet-server-package"
+        package:
+          name: "fleet_server"

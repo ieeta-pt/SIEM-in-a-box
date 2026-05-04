@@ -1,0 +1,34 @@
+# ======================================
+# Filebeat — Collector for Linux Auth
+# ======================================
+
+filebeat.inputs:
+  - type: log
+    id: linux-auth
+    enabled: true
+    paths:
+      # Debian/Ubuntu:
+      - /var/log/auth.log
+      # RHEL/CentOS/Fedora (Uncomment if applicable.):
+      # - /var/log/secure
+    fields:
+      source_type: linux-auth
+    fields_under_root: true
+    # Important: the file can be rotated (logrotate)
+    # Filebeat automatically follows after rotation
+    close_inactive: 5m
+
+output.kafka:
+  hosts: ["<IP_DO_SIEM>:9094"]
+  topic: "logs-linux-auth-default"
+  codec.json:
+    pretty: false
+  required_acks: 1
+  compression: gzip
+
+logging.level: warning
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat-auth
+  keepfiles: 5

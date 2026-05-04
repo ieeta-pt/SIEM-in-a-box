@@ -1,0 +1,48 @@
+# ================================================
+# Winlogbeat — Collector for Windows Event Logs
+# ================================================
+#
+# Runs as a Windows service (SYSTEM or dedicated account)
+
+winlogbeat.event_logs:
+  # Channel of Security — Authentication, Logon/Logoff, Account Management
+  - name: Security
+    event_id: 4624,  # Login successful
+              4625,  # Login failed.
+              4740,  # Account blocked
+              4672,  # Special privileges granted
+              4648,  # Explicit logon (runes)
+              4776,  # NTLM Authentication
+              4768,  # Kerberos TGT request
+              4769   # Kerberos service ticket request
+    ignore_older: 72h
+
+  # System channel — general OS information
+  - name: System
+    level: critical, error, warning
+    ignore_older: 24h
+
+# Winlogbeat automatically produces winlog fields. *
+# What the windows-security.conf pipeline expects:
+#   winlog.event_id
+#   winlog.computer_name
+#   winlog.user.name
+#   winlog.user.domain
+#   winlog.event_data.IpAddress
+#   winlog.event_data.WorkstationName
+
+output.kafka:
+  hosts: ["<IP_DO_SIEM>:9094"]
+  topic: "logs-windows-security-default"
+  codec.json:
+    pretty: false
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000
+
+logging.level: warning
+logging.to_files: true
+logging.files:
+  path: "C:\\ProgramData\\winlogbeat\\Logs"
+  name: winlogbeat
+  keepfiles: 5

@@ -85,7 +85,7 @@ services:
     volumes:
       - certs:/usr/share/kibana/config/certs
       - kibanadata:/usr/share/kibana/data
-      - ./kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+      - ./kibana.yaml:/usr/share/kibana/config/kibana.yml:ro
     ports:
       - ${KIBANA_PORT}:5601
     environment:
@@ -115,8 +115,6 @@ services:
       retries: 120
     networks:
       - siem-network
-
-
 
   # ============================================
   # Kafka
@@ -151,8 +149,6 @@ services:
     networks:
       - siem-network
 
-
-
   # ============================================
   # Logstash
   # ============================================
@@ -171,12 +167,15 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
       - ELASTICSEARCH_HOST=https://es01:9200
       - ELASTICSEARCH_HOSTS=https://es01:9200
+      - ELASTIC_USER=elastic
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - ELASTICSEARCH_USERNAME=elastic
       - ELASTICSEARCH_PASSWORD=${ELASTIC_PASSWORD}
       - ELASTICSEARCH_CA=/certs/ca/ca.crt
     volumes:
       - certs:/certs:ro
-      - ./pipeline.conf:/usr/share/logstash/pipeline/pipeline.conf
+      - ./pipeline.yaml:/usr/share/logstash/config/pipeline.yaml:ro
+      - ./pipelines:/usr/share/logstash/pipeline:ro
       - ./logstash.yml:/usr/share/logstash/config/logstash.yml:ro
     healthcheck:
       test: ["CMD-SHELL", "logstash --version >/dev/null 2>&1"]
@@ -185,7 +184,7 @@ services:
       retries: 30
     networks:
       - siem-network
-  
+
   fleet-server:
     container_name: siem-fleet-server
     depends_on:

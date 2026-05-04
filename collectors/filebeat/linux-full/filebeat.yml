@@ -1,0 +1,104 @@
+# ==============================================================================
+#   Filebeat — Ubuntu Server (monitorização completa do sistema)
+#   Cobre: autenticação, auditoria do kernel, logs de sistema
+#
+#   Uso com Docker (recomendado):
+#     Ver docker-compose.yml nesta pasta
+#
+#   Antes de usar:
+#     [ ] Substituir <IP_DO_SIEM> pelo IP real da máquina SIEM
+#     [ ] auditd a correr no host: sudo apt install auditd
+# ==============================================================================
+
+
+filebeat.inputs:
+
+  # ----------------------------------------------------------------------------
+  # Input 1: Autenticação (SSH, sudo, PAM, logins locais)
+  # Tópico Kafka → logs-linux-auth-default
+  # Pipeline     → stack/pipelines/linux-auth.conf
+  # ----------------------------------------------------------------------------
+  - type: log
+    id: linux-auth
+    enabled: true
+    paths:
+      - /var/log/auth.log
+    fields:
+      kafka_topic: "logs-linux-auth-default"
+      source_type: linux-auth
+    fields_under_root: true
+    close_inactive: 5m
+
+  # ----------------------------------------------------------------------------
+  # Input 2: Auditoria do kernel (auditd)
+  # Tópico Kafka → logs-linux-audit-default
+  # Pipeline     → stack/pipelines/linux-auditd.conf
+  # Requer       → auditd a correr no host
+  # ----------------------------------------------------------------------------
+  - type: log
+    id: linux-auditd
+    enabled: true
+    paths:
+      - /var/log/audit/audit.log
+    fields:
+      kafka_topic: "logs-linux-audit-default"
+      source_type: linux-auditd
+    fields_under_root: true
+    harvester_buffer_size: 65536
+    close_inactive: 5m
+
+  # ----------------------------------------------------------------------------
+  # Input 3: Logs gerais do sistema (kernel, serviços systemd, daemons)
+  # Tópico Kafka → logs-linux-syslog-default
+  # NOTA: requer criação do pipeline stack/pipelines/linux-syslog.conf
+  #       Desativar (enabled: false) até esse pipeline existir
+  # ----------------------------------------------------------------------------
+  - type: log
+    id: linux-syslog
+    enabled: false
+    paths:
+      - /var/log/syslog
+    fields:
+      kafka_topic: "logs-linux-syslog-default"
+      source_type: linux-syslog
+    fields_under_root: true
+    close_inactive: 5m
+
+
+output.kafka:
+  hosts: ["<IP_DO_SIEM>:9094"]
+  topic: '%{[kafka_topic]}'
+  codec.json:
+    pretty: false
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000
+  max_retries: 3
+  bulk_max_size: 2048
+
+
+processors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+  - drop_fields:
+      fields:
+        - agent.ephemeral_id
+        - agent.id
+        - ecs.version
+      ignore_missing: true
+  # Timestamp de latência Filebeat (nanosegundos desde epoch)
+  - script:
+      lang: javascript
+      source: >
+        function process(event) {
+          event.Put("bench.t_filebeat_ns", new Date().getTime() * 1000000);
+        }
+
+
+logging.level: warning
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 5
+  permissions: 0600

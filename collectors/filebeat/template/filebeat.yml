@@ -1,0 +1,161 @@
+# ==============================================================================
+#   Filebeat — Template Base
+# ==============================================================================
+#
+# Como usar:
+#   1. Copia esta pasta para collectors/filebeat/<NOME_DA_FONTE>/
+#   2. Substitui todos os valores marcados com < > pelos valores reais
+#   3. Ajusta os paths dos logs e os campos opcionais conforme a fonte
+#   4. O tópico Kafka deve coincidir com o topic do pipeline Logstash
+#      correspondente em stack/pipelines/<FONTE>.conf
+#
+# Correspondência obrigatória:
+#   collectors/filebeat/<FONTE>/filebeat.yml   →   output.kafka.topic
+#   stack/pipelines/<FONTE>.conf               →   input.kafka.topics[]
+#   (têm de ser o mesmo valor)
+# ==============================================================================
+
+
+# ==============================================================================
+# SECÇÃO 1 — INPUTS
+# Define o que o Filebeat vai ler neste alvo
+# ==============================================================================
+
+filebeat.inputs:
+
+  - type: log
+    id: <FONTE>-<TIPO>             # Identificador único deste input (ex: nginx-access)
+    enabled: true
+
+    # Paths dos ficheiros de log a monitorizar.
+    # Suporta wildcards — útil para logs com rotação (access.log, access.log.1, etc.)
+    paths:
+      - /var/log/<SERVICO>/<FICHEIRO>.log
+      # - /var/log/<SERVICO>/<FICHEIRO>-*.log   # descomentar se necessário
+
+    # Campos extra adicionados a cada evento.
+    # Útil para identificar a origem quando vários inputs enviam para o mesmo tópico.
+    fields:
+      source_type: <FONTE>         # ex: nginx, linux-auth, linux-auditd
+      environment: production      # production | staging | dev
+    fields_under_root: true        # coloca os campos no root do evento (não em fields.*)
+
+    # Ignorar linhas que correspondam a este padrão (ex: linhas de debug verbosas)
+    # exclude_lines: ['^DEBUG']
+
+    # Incluir apenas linhas que correspondam a este padrão
+    # include_lines: ['^(ERROR|WARN|INFO)']
+
+    # Fechar o file handle se o ficheiro não tiver atividade há X tempo
+    # Importante para logs com rotação — liberta o descritor de ficheiro
+    close_inactive: 5m
+
+    # Recolher ficheiros modificados há mais de X tempo (útil para replay)
+    # ignore_older: 24h
+
+    # Se o ficheiro for truncado (ex: logrotate com copytruncate),
+    # o Filebeat reinicia a leitura desde o início
+    # scan_frequency: 10s
+
+
+# ==============================================================================
+# SECÇÃO 2 — OUTPUT (Kafka)
+# Envia os eventos para o tópico Kafka do SIEM
+# ==============================================================================
+
+output.kafka:
+  # Endereço do Kafka externo do SIEM (porta 9094 — listener externo)
+  hosts: ["<IP_DO_SIEM>:9094"]
+
+  # Nome do tópico — TEM DE COINCIDIR com o pipeline Logstash correspondente
+  # Convenção: logs-<fonte>-<namespace>
+  topic: "logs-<FONTE>-default"
+
+  # Codificação — JSON é obrigatório porque o pipeline Logstash usa codec => json
+  codec.json:
+    pretty: false
+
+  # Confirmação de escrita:
+  #   0 = fire and forget (mais rápido, pode perder mensagens)
+  #   1 = confirmação do líder da partição (bom equilíbrio)
+  #  -1 = confirmação de todos os replicas (mais lento, mais seguro)
+  required_acks: 1
+
+  # Compressão para reduzir tráfego de rede
+  # Opções: none | gzip | snappy | lz4
+  compression: gzip
+
+  # Tamanho máximo de uma mensagem Kafka (bytes)
+  # Deve ser igual ou menor que o configurado no Kafka (default: 1MB)
+  max_message_bytes: 1000000
+
+  # Número de tentativas em caso de falha antes de descartar o evento
+  max_retries: 3
+
+  # Número de eventos enviados num único batch para o Kafka
+  # Aumentar melhora o throughput mas aumenta a latência
+  bulk_max_size: 2048
+
+
+# ==============================================================================
+# SECÇÃO 3 — PROCESSADORES (opcional)
+# Transformações leves aplicadas antes de enviar para o Kafka
+# Usar com moderação — o parsing pesado é responsabilidade do Logstash
+# ==============================================================================
+
+processors:
+  # Adiciona informação do host onde o Filebeat corre
+  # (hostname, IP, OS) — útil para correlação
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+
+  # Remove campos internos do Filebeat que não são relevantes
+  # para o pipeline Logstash (reduz o tamanho de cada evento)
+  - drop_fields:
+      fields:
+        - agent.ephemeral_id
+        - agent.id
+        - ecs.version
+      ignore_missing: true
+
+
+# ==============================================================================
+# SECÇÃO 4 — LOGGING DO PRÓPRIO FILEBEAT
+# Controla os logs do processo Filebeat em si (não os logs que ele coleta)
+# ==============================================================================
+
+logging.level: warning             # debug | info | warning | error
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat-<FONTE>           # ex: filebeat-nginx
+  keepfiles: 5                     # número de ficheiros de log a reter
+  permissions: 0600
+
+
+# ==============================================================================
+# SECÇÃO 5 — MONITORIZAÇÃO (opcional)
+# Envia métricas do Filebeat para o Elasticsearch para visualização
+# no Stack Monitoring do Kibana
+# ==============================================================================
+
+# monitoring.enabled: true
+# monitoring.elasticsearch:
+#   hosts: ["https://<IP_DO_SIEM>:9200"]
+#   username: "beats_system"
+#   password: "<BEATS_SYSTEM_PASSWORD>"
+#   ssl.certificate_authorities: ["/etc/filebeat/certs/ca.crt"]
+
+
+# ==============================================================================
+# CHECKLIST ANTES DE USAR
+# ==============================================================================
+#
+#  [ ] Substituí <FONTE> pelo nome da fonte (ex: nginx, linux-auth)
+#  [ ] Substituí <IP_DO_SIEM> pelo IP real do servidor SIEM
+#  [ ] O topic em output.kafka.topic coincide com o pipeline Logstash
+#  [ ] Os paths em filebeat.inputs[].paths existem no alvo
+#  [ ] O Filebeat tem permissão de leitura nos ficheiros de log
+#  [ ] Testei a ligação: filebeat test output
+#  [ ] Testei a configuração: filebeat test config
+# ==============================================================================

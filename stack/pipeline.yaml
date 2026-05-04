@@ -1,0 +1,50 @@
+#=================
+#   File Master
+#=================
+#
+# pipeline.conf -> Each input defines an independent pipeline.
+
+#
+# Web Service -> Nginx
+#
+- pipeline.id: nginx
+  path.config: "/usr/share/logstash/pipeline/nginx.conf"
+  pipeline.workers: 2
+  pipeline.batch.size: 125
+  pipeline.batch.delay: 50
+
+#
+# Firewall -> pfsense
+#
+- pipeline.id: firewall
+  path.config: "/usr/share/logstash/pipeline/firewall-pfsense.conf"
+  pipeline.workers: 1
+  pipeline.batch.size: 50
+  pipeline.batch.delay: 50
+
+#
+# O.S. -> Windows Event Logs
+#
+- pipeline.id: windows
+  path.config: "/usr/share/logstash/pipeline/windows-security.conf"
+  pipeline.workers: 2
+  pipeline.batch.size: 125
+  pipeline.batch.delay: 50
+
+#
+# O.S -> Linux auth
+#
+- pipeline.id: linux-auth
+  path.config: "/usr/share/logstash/pipeline/linux-auth.conf"
+  pipeline.workers: 1
+  pipeline.batch.size: 50
+  pipeline.batch.delay: 50
+
+#
+# O.S. -> Linux auditd
+#
+- pipeline.id: linux-auditd
+  path.config: "/usr/share/logstash/pipeline/linux-auditd.conf"
+  pipeline.workers: 1
+  pipeline.batch.size: 50
+  pipeline.batch.delay: 50

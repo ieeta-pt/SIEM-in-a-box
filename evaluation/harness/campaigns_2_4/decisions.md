@@ -1,0 +1,21 @@
+# Scientific decisions and metric dictionary
+
+Scope A: push-ingestion and evidence preservation. t_produced is the generator timestamp. t_ing is _ingest.timestamp, stamped when Elasticsearch/OpenSearch receives an indexing request; it is **not** a search-visible, indexed-complete, or alert timestamp. For A, Logstash parsing is upstream; for B/B-disk, ingest-pipeline parsing is downstream. Cross-variant latency crosses different amounts of work.
+
+per_run_metrics.csv counts one first receipt per (run_id, stream, seq). Later receipts are duplicates, not extra deliveries. p50/p95/p99 and maximum use first receipt minus exact production time for received IDs in the source's warm-up/cooldown window. Quantiles exclude missing IDs and never imply an all-event deadline.
+
+n_missing_at_scan = n_sent - n_unique_receipts. All 238 generator manifests have zero send errors. These IDs are absent from the final index snapshot, but no scan timestamp or proof of final queue exhaustion was retained, so confirmed_drop_count is blank. A drained=false flag means the original count-based drain did not settle; 35 runs have it. In the actual corpus no stream with drained=true has missing IDs, although count-based settling alone is not a sound completeness criterion. Forty-nine streams have missing IDs at scan, including streams in runs where other streams completed.
+
+For missing IDs there is no exact saved production time. loss_windows.csv estimates time as manifest.start_ns + (seq-seq_start)/target_rate, uses half-open fault intervals, and reports boundary uncertainty within at least 5 ms or one nominal event period. This is a classification of missing-at-scan IDs, not proof of UDP socket overflow. B-disk 2,000-EPS outage rows contain 1,196/1,315 estimated missing IDs during the pause, and 2,443/1,839 missing in the pre-clearance cohort in total.
+
+recovery_pre_clearance_s is the last **first** request receipt, relative to fault clearance, of IDs produced by clearance, only if the full cohort is present at scan. With missing cohort IDs the value is blank and status incomplete_at_scan; last_observed_pre_clearance_s remains a diagnostic only. catchup_steady_s is blank because return to the normal backlog regime is not identifiable from these snapshots, especially when the generator stops. latest_receipt_after_clearance_s is not final-scan time. The fluid equation describes continuous catch-up under constant capacity and input, not the old pre-clearance metric; no prediction-accuracy claim is retained.
+
+resource_summary.csv sums sampled SUT-container statistics only: A = Elasticsearch + Kafka + Logstash, B/B-disk = Elasticsearch, C = Wazuh manager + indexer. It excludes Kibana, Fleet, collectors, rules and other host activity. Sampled maxima are neither continuous nor whole-deployment maxima.
+
+The Wazuh comparison characterizes distinct configurations. Wazuh analyzes/archives events with TLS while the Elastic paths do not run equivalent rules per event. Flooding data associate A's separated configuration with lower cross-source delay, but do not isolate Kafka, pipeline, worker, parser or queue effects. Broker-failure data describe SIGKILL of one process, not host/disk loss. Filebeat 8.19 Kafka output ignores max_retries; metadata retry count is separate (official Elastic 8.19 documentation: https://www.elastic.co/guide/en/beats/filebeat/8.19/kafka-output.html).
+
+Contrary evidence to the plan: none of its identified factual diagnoses was contradicted by the raw arrays. The anticipated possibility of drained=true with missing IDs did **not** occur in this corpus; the harness criterion remains logically insufficient for future runs.
+
+comparison_old_new.csv records old versus first-receipt p95/max per stream. Thirty-seven of 238 stream p95s changed by more than 1 ms (22 outage, 3 file outage, 6 outage-load, 6 broker-kill); the largest absolute correction is 4,724.7 ms. None of the flood streams had duplicates, so the reported flood-window p95s are unchanged. Timeline plots now use first receipts only.
+
+runs.csv preserves each original check level (161 ok, 32 warn), original drained flag and a derived ID-set status. No historical run is silently excluded from descriptive accounting; warning/incomplete runs need their status beside each interpreted metric.

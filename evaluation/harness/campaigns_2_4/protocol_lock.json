@@ -1,0 +1,151 @@
+{
+  "campaign_sha256": "9724a78721a48e8910405fe0a4bad6878835686e08153d699094b28c04e26bea",
+  "pilot_specs_sha256": "49bd885fb8877cda7d72388d1298a2fac09cf5f23e674acbfb71a8e54e43e776",
+  "pilot_artifact_sha256": {
+    "rev27-pilot-a-sep": {
+      "result.json": "626375340b45b918230c639636a6220cf006fbb752772da2a42d352bd239424b",
+      "execution_assessment.json": "ba65b00765ba7dadf604df9bc5c467f6f12a4d6895a9c09304fd1ee3bbd4e0b6",
+      "raw.npz": "a2d7005962a813037c233706e0a257db5ee6e13b5cdfa121d2c9d789c49aa9c1",
+      "spec.json": "4389b28dc0dc0cc212a593415c415381e961af03dfe75873eb36bea329b48856",
+      "config_manifest.json": "e845400b5df832b9d72b5312b3bf1d538b3075eb204671c29605dcdca755cbbf",
+      "telemetry.jsonl": "aa96e59692928bd3660f087e7f368780c29ee51bc46bec56637a03911bd343ca",
+      "gen-auth.events.bin": "51b32a1f29a355c864733edba4018cab955428a5890f84f61176ed9ed76ec8b4",
+      "gen-flood.events.bin": "3be4b86a7cb5de653705de0fd2ef503fac7e8a424e07c8342c8850b91c3b781a",
+      "gen-nginx.events.bin": "a2e8f87a5b16ae0395becb535946ed95286217c7f1d0a279f93ebfbbb96b7768"
+    },
+    "rev27-pilot-a-shared": {
+      "result.json": "d4937ee133c25ec829f0919cba98a02837aa327181ea84aa9cddfe1c4c9c9ff0",
+      "execution_assessment.json": "aa2e2fd8554ea90510909c672cba3245ea56fb7ff74612557bd9510259e116da",
+      "raw.npz": "6da63712ef29053410bcd1932c796d9cb0cf76040c7dcbbb221c1d636f975a02",
+      "spec.json": "fad9a5c9ed379953ae96dda8d92b89046325c53d0a7be7d3dd5d73d36744a4d1",
+      "config_manifest.json": "d009792de46d25c03a44e064d9ae3fd2796c8099f3e9d7cb12644e6dc8998f82",
+      "telemetry.jsonl": "1214d8a1776441eb403e115f788b3aa36ac8fbeb1be586807af2dd3023926824",
+      "gen-auth.events.bin": "9992717bee2f9a29ddc02b49ca3c3e4846b53eb59c941b565bc1e793aea13fee",
+      "gen-flood.events.bin": "51b764165424a15ffc7204e46a05a4d85496428045456d826ba573ac373af6da",
+      "gen-nginx.events.bin": "34c01a7be7e0268e5bb2ee6524eee4169106735c93d7a7e2184f0f0ae3b07b55"
+    },
+    "rev27-pilot-b-disk": {
+      "result.json": "fd127146619ccc7a612d6ee8a98bfce096d707999added7e5a475b4fc1cff0f5",
+      "execution_assessment.json": "dcb97f88ed94af8540fc577c26db91ee27fd23698b061c4268451c7050f5c678",
+      "raw.npz": "2e093b4acad8ead80aec7052222b054c2b6bb74ef7aae9fb8fbadeb195178ab0",
+      "spec.json": "e2ad0a0c1fba46c7a842425b2f831dbb8d1edcfa825d782b9e9477e6061ec8c9",
+      "config_manifest.json": "64f33041fbca05242f69c87cbfb546108764efbdc994bd91e58ee6525bdc7e7c",
+      "telemetry.jsonl": "4af1f5ed4665152bc22d3d059048db8a865d7c1070f030dff072b9e0cace1770",
+      "gen-auth.events.bin": "6b1f626ca52f38e1c0e7c8288771f04288dab78bcef1e3528ff39490af80ec48",
+      "gen-flood.events.bin": "e42e71212e3b8af79ae9d840756b571b87d87ed57777eb06903cab123457b405",
+      "gen-nginx.events.bin": "8d2e0040109510705c32cfd2225376ca6cc9932dd451f397743147e6768db9bf"
+    },
+    "rev27-pilot-c": {
+      "result.json": "abd524d0e420f294a1d3aabc31f5ffb6e759f43d4008ee69d0da3c506041b6dc",
+      "execution_assessment.json": "52c761a67e36dca7a45f2f534b3880e624926e077ae14779448caf3d3424c7b7",
+      "raw.npz": "f303f4cd1a03f4862008baf0737af3ead465ff4013339df78338c4e59c0622c1",
+      "spec.json": "edf82cf0871e2470187edbac8a37fef1191ec9dd12857c000c1aecd4b2c903a6",
+      "config_manifest.json": "b6635e0aedad6ecb94340e2d09fc5d292b2c37a00e42bf9f731d92a60da360fc",
+      "telemetry.jsonl": "6d536eca8d4eee031e7909c0ee77c852e27bdf2280361e914e902e5baf5c1ea6",
+      "gen-auth.events.bin": "93aa7551717309343be5e46ef1c31e03170788f620ad13d104982cd2cb0f3003",
+      "gen-flood.events.bin": "27c4dcb5d13bbb01c07932a4773f83834733e1bbf545c72bf3a06986a6701ee4",
+      "gen-nginx.events.bin": "8eba865c4c04e32f1289c67d87cb30de9edb43dc8ce4aa5b885e6f58d6cce013"
+    },
+    "rev27-pilot-a-sep-outage": {
+      "result.json": "006455ad85f2a0d619c89c95c450774f587a6a6a5f30cac73a16ac7d47d12eb1",
+      "execution_assessment.json": "1b08e2b45fcc858882403ff86fe4006fcecf88beea443841fe8fe4151ef23ff3",
+      "raw.npz": "3a7bb24d595a82300f0d7301c368459b3f2a7399f3479c969758489f14aa1df1",
+      "spec.json": "27cc8f45bd8042438bd1722e35cbe0b10106cd835f49b3af6a0154e4f76cdacd",
+      "config_manifest.json": "8fcb07644d249d5b35f2d05cb6c79a1a7c3741af7647f4ade1b8f6719505babb",
+      "telemetry.jsonl": "53740a9db25a4164bf096ecc0cc7c1652ca3e8781e57ad3071b8c7dd32a3e45e",
+      "gen-nginx.events.bin": "0e2fbe1edbc09b7b751c660e4d0351115166df699613508fc0d3c448c8dc6857"
+    },
+    "rev27-pilot-cap-6000": {
+      "result.json": "5a7c77cfbdc3097927058f84a6b82d0646ebfafdec439d48d7fc1bf3ceb7203c",
+      "execution_assessment.json": "50609312c90b260be6a8ea742fa1e5292d79e8d8cac4db205ad0d2d0053a1564",
+      "raw.npz": "855b5367d28dc2d3d556c55c034c10c3b48a0b59320c60df39d169e7dda98f12",
+      "spec.json": "a73f3f45ef957368c1c674e4ef54206e6399717cae344ce0fe6df16b7b704fe4",
+      "config_manifest.json": "df32f160556d41863a92f617fa48d95a07c3e9f8fba10c2247fb5460ebe7fe6f",
+      "telemetry.jsonl": "6d105c0ab32ff35833d38edd884d51eed1b0e6dd015a04884ca56d2038d767c1",
+      "gen-nginx.events.bin": "0052f7f9b2d341200480137bdd0a5c3880c7b8a9e5661c0f219dd488e277189f"
+    },
+    "rev27-pilot-cap-8000": {
+      "result.json": "66fbc74f66cff2d910a06ff95f04c92140303a5b2a0eb08536a87fc385908463",
+      "execution_assessment.json": "543a8aa5d2e4b3fc9e9d44d2d491cd3860a6043c1e2a9a843f23130662e80a4b",
+      "raw.npz": "ec61ddca38c5de55a6b551c8871d8cf74473d981f46ef45d8fc3492af18f31ad",
+      "spec.json": "370a000d642567c3b7d71d0d2e1cd5ecff05a27bf0d51e6c75a82eeeca097487",
+      "config_manifest.json": "7d8b4db7436ed6a837a370e82843beeb504b8fa52882e23e86fc6bd2f1ba61e7",
+      "telemetry.jsonl": "6c1ef6c4133f64eec465cf4c0d70913d8bae0b20dbe9008f0eee74cdc46bb381",
+      "gen-nginx.events.bin": "4f60d29b8cff97f0ab95644d11de7f6c4885900ba8fe6530c3219601930d3daf"
+    },
+    "rev27-pilot-outage-600-500": {
+      "result.json": "3b36a2df9bc347285c80ba3c6fc71bf6f9542ef2b4bcc020c4c683f240f5530a",
+      "execution_assessment.json": "956250956b9930f3f70664928b65300d686fb0aa37051c4aecd41df0ed24c9ff",
+      "raw.npz": "2b825ead09656e76611236e3a8d559998f2b003a4cc46ea7f9af5e31962822af",
+      "spec.json": "4387eeee9fde974271e0ec4b0371cf7232d24823f197ca8742df72bd991b3f91",
+      "config_manifest.json": "10f154e187c0e9734d1cc5f92b24374d95790f92c94d88b526fd17d8b706bb0f",
+      "telemetry.jsonl": "dfb7f61ce54cdc15f66885ec710e8796abc4ff27d38ab7f6511f21705eb7cb83",
+      "gen-nginx.events.bin": "1700e535c9184e0c0935ae6e8fadf37780b5bc0e440de965017bb3253a6f6dce"
+    },
+    "rev27-pilot-cap-4000": {
+      "result.json": "e0c51259ba5e12ffaf2a45620fc5e8641ec695ca498ff34b111bf1e0c18be7c9",
+      "execution_assessment.json": "ec620b154c373fa0fe6c05a934ac48292c98f0115ef8ab4ba4f5513493b78afa",
+      "raw.npz": "d131c06ec165126cae03689602ac51b1d7692d2f17b02132c43997974d103c62",
+      "spec.json": "66861aa0b59104329cb1f62327b1048acfa8b92125183d28edd4a172b232ffe5",
+      "config_manifest.json": "0c4e6bf2eb1688e4c8e9cf39bb393c486e04074ebd79a2ede6978a2ba41b34a4",
+      "telemetry.jsonl": "375f9dde292066598a5c914c199816ddd3c3d7bb521c139b69087a4cb4414ba7",
+      "gen-nginx.events.bin": "adf5d16baad66a3d20884a65c278896419fdec2d3d06ad4004ea479cc084eede"
+    },
+    "rev27-pilot-e1-6000-a-sep": {
+      "result.json": "01bd73a00f84dff64078826cc9d699cbd1a51712468d569b4df371c036bb28c8",
+      "execution_assessment.json": "c9b13c7e863c7d1cf208936749dcfde5144c74631397d3a659bb99e85b98600f",
+      "raw.npz": "eff49180d7abbd4fbe4876213510a21c811a7b66222ddc62b585995a12ab6f24",
+      "spec.json": "9192a2c0ef4806cb698633d60811685747823557cf3f34ce66db7961a85dbf87",
+      "config_manifest.json": "e804f5435b8aa9d132597942b95f8b41dd0bd2910bec3ac629368bc24a8259be",
+      "telemetry.jsonl": "26ec7da267d6e9e21f809361ba43c63fc14fcde084de4ed79e8c7ff00b76f9ec",
+      "gen-auth.events.bin": "79ae2047a665f5cc8179c20e932db3629d4d3ddf15e443fa78f03c4b853bd455",
+      "gen-flood.events.bin": "07ac69e1257c12f5b393959eba7485fa4e983dfb20612579cb16ecc1a5b1d590",
+      "gen-nginx.events.bin": "dee12479fee1acef0c35f627cea14c9396060f8fc01a91c8588dee2835738516"
+    },
+    "rev27-pilot-e1-6000-a-shared": {
+      "result.json": "6dd07b8fc53257d878c29ad6adc26eb4ced2e09e2ea166cf2fa8570f7375bc77",
+      "execution_assessment.json": "37b507222bb5addb0474b0dca8ce95b4881c334256c223962bdc0903ed3c9934",
+      "raw.npz": "9c286fa3f3ac8c9ad24b97622e7cf5206117d142f037e41376b839a669eb6dd1",
+      "spec.json": "7b789615ed75da67f04d1db93986fa4ee33e1433fd30ad02d39bc15797b36e20",
+      "config_manifest.json": "17d6d42c1999c7c1dd056ebf7dd708d6224d0e647060641ace823cd05a5c0f23",
+      "telemetry.jsonl": "dd2487ef048bbeaefc4ebb539a822d075885836669fd51b4b1cb92e87859026e",
+      "gen-auth.events.bin": "bdd8adf8370e8f0147d8c390a77adc00eaf4fb1068a87c9428bfd3cec6db106a",
+      "gen-flood.events.bin": "0ce45d879edd55595a94d329fc3fa8ee6851225fa690b63ddcaad23ed0a52a40",
+      "gen-nginx.events.bin": "67d87efb29c7fefdc22529a4fbc992f314531ec1c6f9adaff53284268372eca7"
+    },
+    "rev27-pilot-e1-6000-b-disk": {
+      "result.json": "e8444120eb34678468f2d43d8c8d924ac9eea022620a880696691da666e81d39",
+      "execution_assessment.json": "ef5522be43d1c50fc96adc84eaa1b9d69744abd43c9a214539d779e7aebad59b",
+      "raw.npz": "b2b3340a6f1e8136a6d1570a6fbce78eca6b399c67c9327729df1c561c8286dc",
+      "spec.json": "767c570b6d3c5a19cabd8392a80a5c524f897ff81f4488340f421ebc27592e29",
+      "config_manifest.json": "869ddc3a5f84eafc6e5170cc74c3791481242dd4c7bb0f24ad5d20a78334a96b",
+      "telemetry.jsonl": "b0d85febba7d546156996a9d0d2dbf19a535b2a1cae60a8b371e374ad95f1c45",
+      "gen-auth.events.bin": "887737fc3a4a46038d84c8c07f618019f02210c63d4ac89bff89ffc461d7d811",
+      "gen-flood.events.bin": "33b287601e8a04f43ad61c285dcc3144b2dda0350f5b0c2ad5f81be0d604ab9a",
+      "gen-nginx.events.bin": "fc4b22ee56401127ee4eb8a0645c43b594ebde7f19a4d7ed3249e0a3acc90ced"
+    },
+    "rev27-pilot-e1-6000-c": {
+      "result.json": "b385b2b83071bfb97cb80b6889bfb2901bb2ae55d788c94b7fe207694fbc27b4",
+      "execution_assessment.json": "bd296c42dea5656dedc82a13ceece4d4ca62d6357fccccaa9215a0c944cd31d3",
+      "raw.npz": "80b7203acca6290fc838f374a86d316758454f5252d2ed5a907b6a011d6d8b53",
+      "spec.json": "6026f143c4aac269be74d4f8e6e0b5f28bc88c9344a0747fde64a17e962d2171",
+      "config_manifest.json": "d275df2cd0eca2003ac42616cf1bd7dbf00b68da65f1b99d80795e856a0f80ca",
+      "telemetry.jsonl": "1fd48e04883248e371c2c6459a80014f329f4da2585cecb6a32dc3822a79c7c6",
+      "gen-auth.events.bin": "687748253a5d4e4893f63e9bd8afaa13421bb58d627411d006d25232fe647c47",
+      "gen-flood.events.bin": "8597f9db47e235a902c2f925d1b2a0c6262ac5d67fbe61f6c27956bce25698a8",
+      "gen-nginx.events.bin": "e9f953fe7b1032fcc135f025326bc91347fd4d23d7187ddf5eb5f020f1ecdfdd"
+    }
+  },
+  "review_notes": {
+    "capacity_decision": "Select 4000 and 6000 EPS for the A-sep confirmatory capacity bracket. In the 60-180 s pilot window, 4000 EPS had mean indexer request receipt 4000 EPS and backlog change +14 IDs, with zero UDP InErrors; 6000 EPS had mean receipt 5034.375 EPS and backlog change +115875 IDs, also with zero UDP InErrors. The 8000 EPS pilot is retained as exploratory evidence only: 5274 UDP RcvbufErrors, 62228 IDs missing at its cutoff, and a timed-out drain. Do not infer a clean indexer service capacity from that pilot.",
+    "e1_load_decision": "Select 6000 EPS additional nginx load, plus the existing 200 EPS base and 10 EPS auth, for all E1 confirmatory variants. This is an end-to-end evidence-preservation stress contrast, not a clean-input service-capacity test. The exploratory A-sep E1 pilot had zero UDP errors, all IDs at cutoff and auth flood-window p95 301.8 ms. A-shared had 14531 nginx RcvbufErrors, 14531 nginx/flood IDs missing at cutoff in total, all 2999 auth IDs present, and auth p95 24523.6 ms; B-disk had 90383 RcvbufErrors, 90383 nginx/flood IDs missing in total, all 2999 auth IDs present, and auth p95 1086.5 ms. C had zero UDP errors but 1434 auth and 637144 nginx/flood IDs missing at a 180 s drain cutoff; its auth p95 of 287622.2 ms is conditional on received events. These are single exploratory pilots and do not establish treatment effects. Report input counters, missing-at-cutoff and latency jointly in confirmatory analysis; do not equate individual missing IDs to UDP counter deltas.",
+    "generator_overhead": "In four alternating 30 s local UDP trials at nominal 8000 EPS, mean achieved rates were 7998.603 EPS without and 7998.600 EPS with per-attempt logging, with zero send errors. Mean generator user+system CPU time rose from 4.5294 to 5.2518 s per trial (15.95%). Per-second counts stayed between 7962 and 8040 without logging and between 7962 and 8036 or 7977 and 8035 with logging. This measures the generator only and cannot establish SIEM throughput.",
+    "overhead_probe_summary": "new_results/generator-overhead-02/summary.json",
+    "recovery_window_900s": "The A-sep 500 EPS pilot with a 600 s backend pause and 900 s continued production after clearance completed at the final cutoff: all 779999 successfully sent IDs were present. The pre-clearance cohort was complete 96.555 s after backend readiness; the backlog met the separate 30 s steady criterion 138.963 s after readiness. The 900 s window was sufficient for this tested A-sep cell, not a guarantee for B-disk, C or 2000 EPS; censored confirmatory outcomes remain reportable.",
+    "instrumentation": "All 13 pilot executions passed the predeclared execution-validity checks; four had timed-out incomplete drains and retain their raw snapshots. Every generator attempt has a binary record and validated hash; analysis uses first indexer request receipt per ID and counts duplicates separately. The long outage pilot had 985 duplicate receipts. UDP namespace counters, Filebeat/Logstash telemetry where applicable, parser/routing checks for A/B, clock-offset checks, AC, Turbo-off and CPU frequency samples were saved. No pilot showed thermal throttling. Wazuh-native parse-quality checks are not directly comparable to A/B; neither indexer receipt nor the final snapshot measures search availability or alert time.",
+    "exclusion_policy": "Keep the execution-validity rules in PRE-RUN-PROTOCOL.md unchanged: no missing telemetry above 5%, AC/Turbo change, offered-attempt rate outside 5%, clock offset span above 5 ms, missing frequency, parser failure or wrong index routing. Retain every complete, incomplete and censored run in the inventory. Sender errors, UDP errors, duplicates, missing IDs at cutoff and thermal flags are reported separately; they are not automatic exclusion criteria and missing-at-cutoff is not confirmed permanent loss. An invalid/partial future run requires review and a new ID, never overwrite. The campaign is exploratory until the confirmatory repetitions are collected and reviewed."
+  },
+  "review_notes_sha256": "1bc8f04513eb506a9e3f041137eddce179c27a12322f08a8ceef4769f91b8fac",
+  "overhead_probe_file": "new_results/generator-overhead-02/summary.json",
+  "overhead_probe_sha256": "f8a54a94cfa158a17f5afac0a6093ffdbc8e75258aa5253b7e4bdae4725181b7"
+}

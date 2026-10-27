@@ -1,0 +1,7 @@
+run_id,container,cpu_cores,mem_gib,samples
+rev27-e4-cost-a-sep-1000-kibana-r1,bench-es,0.181,3.792,127
+rev27-e4-cost-a-sep-1000-kibana-r1,bench-fb-nginx,0.185,0.061,127
+rev27-e4-cost-a-sep-1000-kibana-r1,bench-kafka,0.095,1.023,127
+rev27-e4-cost-a-sep-1000-kibana-r1,bench-kibana,0.014,0.565,127
+rev27-e4-cost-a-sep-1000-kibana-r1,bench-logstash,0.208,1.221,127
+rev27-e4-cost-a-sep-1000-kibana-r1,(stream nginx),,,lost=0 p50_ms=122 p95_ms=219

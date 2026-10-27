@@ -1,0 +1,3632 @@
+{
+ "rev27-e5-alerts-a-sep-f0-r1": {
+  "result": {
+   "id": "rev27-e5-alerts-a-sep-f0-r1",
+   "spec": {
+    "id": "rev27-e5-alerts-a-sep-f0-r1",
+    "phase": "E5-alerts",
+    "variant": "A-sep",
+    "mode": "udp",
+    "repetition": 1,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r1",
+    "sequence_index": 3,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 0.11099999999999999,
+     "mem_gib": 3.830078125,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.0517578125,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.07200000000000001,
+     "mem_gib": 0.0595703125,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.0755,
+     "mem_gib": 1.0078125,
+     "samples": 76
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.01,
+     "mem_gib": 0.5400390625,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.0965,
+     "mem_gib": 1.203125,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792595424981654784,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792595815894749067,
+    "end_ns": 1792595816568433041
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 1792.0,
+     "cutoff_ns": 1792595815894749067,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 57001,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 618.6691,
+      "p95_ms": 1166.637755,
+      "p99_ms": 1213.700031,
+      "max_ms": 1247.41156
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 618.788826,
+      "p95_ms": 1170.6641129,
+      "p99_ms": 1214.89180059,
+      "max_ms": 1247.41156
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2560.0,
+     "cutoff_ns": 1792595815894749067,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 201.390977,
+      "p95_ms": 401.2145745,
+      "p99_ms": 500.49467000000004,
+      "max_ms": 604.161089
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 201.1619345,
+      "p95_ms": 400.892889,
+      "p99_ms": 500.46827464,
+      "max_ms": 604.161089
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 32.08968234062195,
+     "p95": 58.888557124137876,
+     "max": 62.372108697891235
+    },
+    "alert_latency_all_s": {
+     "p50": 32.028934955596924,
+     "p95": 58.8023293018341,
+     "max": 62.44890260696411
+    },
+    "threshold_alerts_during_production": [
+     45.9,
+     45.9,
+     106.0,
+     106.0,
+     166.0,
+     166.0,
+     226.0,
+     226.0,
+     286.2,
+     286.2,
+     346.0,
+     346.0
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925954192000000000,
+    "seq_end": 925954192000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00299493300554,
+    "achieved_rate": 9.996566869839798,
+    "start_ns": 1792595424981876789,
+    "end_ns": 1792595724985084517,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "dd1387c1d5e60976a0e26ed9db878de51aa6bda2e7bf0ee2b3a3f6115628b240"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925954190000000000,
+    "seq_end": 925954190000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.00347192399204,
+    "achieved_rate": 199.9943521160354,
+    "start_ns": 1792595424981876402,
+    "end_ns": 1792595724986080301,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "3a15048bf0c054287105ed6e7d00de80ae66aa993a3844eb7440f4a14295f19c"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-sep-f0-r1",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 1013679.5,
+    "minimum_khz": 394969,
+    "maximum_khz": 2406185
+   },
+   "host_clock_offset_p99_p01_span_ns": 1749,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e5-alerts-a-sep-f0-r2": {
+  "result": {
+   "id": "rev27-e5-alerts-a-sep-f0-r2",
+   "spec": {
+    "id": "rev27-e5-alerts-a-sep-f0-r2",
+    "phase": "E5-alerts",
+    "variant": "A-sep",
+    "mode": "udp",
+    "repetition": 2,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r2",
+    "sequence_index": 7,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 0.1485,
+     "mem_gib": 3.794921875,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.0517578125,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.073,
+     "mem_gib": 0.0576171875,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.08149999999999999,
+     "mem_gib": 1.025390625,
+     "samples": 76
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.016,
+     "mem_gib": 0.6279296875,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.1005,
+     "mem_gib": 1.24267578125,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792598692328132864,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792599083221661071,
+    "end_ns": 1792599083945400125
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792599083221661071,
+     "full_window": {
+      "n_sent_ok": 57000,
+      "n_first_receipts": 57000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 619.0066959999999,
+      "p95_ms": 1165.6218,
+      "p99_ms": 1213.2449621700002,
+      "max_ms": 1245.775842
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 619.377777,
+      "p95_ms": 1170.2734092,
+      "p99_ms": 1214.8183461400001,
+      "max_ms": 1243.588377
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2816.0,
+     "cutoff_ns": 1792599083221661071,
+     "full_window": {
+      "n_sent_ok": 2850,
+      "n_first_receipts": 2850,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 201.4299405,
+      "p95_ms": 399.6351153999999,
+      "p99_ms": 499.8536838,
+      "max_ms": 600.476917
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 201.29914300000002,
+      "p95_ms": 306.5924711499996,
+      "p99_ms": 499.775914,
+      "max_ms": 600.476917
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 32.46249735355377,
+     "p95": 59.34122992753983,
+     "max": 62.81353831291199
+    },
+    "alert_latency_all_s": {
+     "p50": 32.41876530647278,
+     "p95": 59.247183275222774,
+     "max": 63.14502143859863
+    },
+    "threshold_alerts_during_production": [
+     45.8,
+     45.8,
+     105.9,
+     105.9,
+     166.0,
+     166.0,
+     226.1,
+     226.1,
+     286.1,
+     286.1,
+     346.0,
+     346.0
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925986872000000000,
+    "seq_end": 925986872000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.001386576012,
+    "achieved_rate": 9.996620463086217,
+    "start_ns": 1792598692328366465,
+    "end_ns": 1792598992330049066,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "671c2f9fea169f1d6cf68257f17c027a7b352b5ab3148a5dd1893cfe7aefd878"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925986870000000000,
+    "seq_end": 925986870000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.00171580600727,
+    "achieved_rate": 199.99552282160172,
+    "start_ns": 1792598692328366446,
+    "end_ns": 1792598992330730959,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "a66d453a12900aa8dfdb687fb7c6ac8ee1ce6ac5f34ae975c829d981c1d6ca12"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-sep-f0-r2",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 1192254.5,
+    "minimum_khz": 393369,
+    "maximum_khz": 2404545
+   },
+   "host_clock_offset_p99_p01_span_ns": 2015,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e5-alerts-a-sep-f0-r3": {
+  "result": {
+   "id": "rev27-e5-alerts-a-sep-f0-r3",
+   "spec": {
+    "id": "rev27-e5-alerts-a-sep-f0-r3",
+    "phase": "E5-alerts",
+    "variant": "A-sep",
+    "mode": "udp",
+    "repetition": 3,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r3",
+    "sequence_index": 11,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 0.10950000000000001,
+     "mem_gib": 3.80126953125,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.052734375,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.073,
+     "mem_gib": 0.0556640625,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.08099999999999999,
+     "mem_gib": 0.87109375,
+     "samples": 76
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.0115,
+     "mem_gib": 0.48828125,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.092,
+     "mem_gib": 1.4111328125,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792602086807406592,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792602477774439613,
+    "end_ns": 1792602478620871262
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 1792.0,
+     "cutoff_ns": 1792602477774439613,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 57001,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 618.60743,
+      "p95_ms": 1163.766521,
+      "p99_ms": 1212.57888,
+      "max_ms": 1258.720759
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 617.539818,
+      "p95_ms": 1164.02135875,
+      "p99_ms": 1213.04536577,
+      "max_ms": 1258.720759
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2560.0,
+     "cutoff_ns": 1792602477774439613,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 201.386377,
+      "p95_ms": 309.14675,
+      "p99_ms": 500.3882215,
+      "max_ms": 701.585869
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 201.26320700000002,
+      "p95_ms": 304.5345275,
+      "p99_ms": 499.96372535,
+      "max_ms": 599.461325
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 32.58365201950073,
+     "p95": 59.46322302818298,
+     "max": 62.85502219200134
+    },
+    "alert_latency_all_s": {
+     "p50": 32.52899384498596,
+     "p95": 59.43416619300842,
+     "max": 63.541526317596436
+    },
+    "threshold_alerts_during_production": [
+     48.4,
+     48.4,
+     108.5,
+     108.5,
+     168.5,
+     168.5,
+     228.6,
+     228.6,
+     288.5,
+     288.5,
+     348.5,
+     348.5
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 926020812000000000,
+    "seq_end": 926020812000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.0046237009956,
+    "achieved_rate": 9.996512597049175,
+    "start_ns": 1792602086807620964,
+    "end_ns": 1792602386812446354,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "5c79303fd3447b2061ca2838310fcee2ac61b0231a1e99dba6e3677791c29a07"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 926020810000000000,
+    "seq_end": 926020810000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.00034236900683,
+    "achieved_rate": 199.99643842472668,
+    "start_ns": 1792602086807621580,
+    "end_ns": 1792602386808685175,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "f5642698c18e9114038a07ae608897b979a5926d1c5dfca989470a325f3171fb"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-sep-f0-r3",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 1127329.0,
+    "minimum_khz": 395039,
+    "maximum_khz": 2407384
+   },
+   "host_clock_offset_p99_p01_span_ns": 2161,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e5-alerts-a-sep-f6000-r1": {
+  "result": {
+   "id": "rev27-e5-alerts-a-sep-f6000-r1",
+   "spec": {
+    "id": "rev27-e5-alerts-a-sep-f6000-r1",
+    "phase": "E5-alerts",
+    "variant": "A-sep",
+    "mode": "udp",
+    "repetition": 1,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r1",
+    "sequence_index": 1,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 1.02,
+     "mem_gib": 3.8251953125,
+     "samples": 81
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.05078125,
+     "samples": 81
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.091,
+     "mem_gib": 0.0556640625,
+     "samples": 81
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.198,
+     "mem_gib": 1.0224609375,
+     "samples": 81
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.013999999999999999,
+     "mem_gib": 0.62890625,
+     "samples": 81
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.787,
+     "mem_gib": 1.3798828125,
+     "samples": 81
+    }
+   },
+   "scheduled_start_ns": 1792593256534245376,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792593660053625380,
+    "end_ns": 1792593674259214878
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792593660053625380,
+     "full_window": {
+      "n_sent_ok": 57000,
+      "n_first_receipts": 57000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 17529.636083999998,
+      "p95_ms": 41215.22921325,
+      "p99_ms": 42509.02648622,
+      "max_ms": 42836.766113
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 25223.317039,
+      "p95_ms": 41606.97454235,
+      "p99_ms": 42600.02645428,
+      "max_ms": 42836.766113
+     }
+    },
+    "flood": {
+     "n_attempted": 1079996,
+     "n_sent_ok": 1079996,
+     "n_send_errors": 0,
+     "n_first_receipts": 1079996,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 512.0,
+     "cutoff_ns": 1792593660053625380,
+     "full_window": {
+      "n_sent_ok": 990022,
+      "n_first_receipts": 990022,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 26205.7102455,
+      "p95_ms": 41079.33167875,
+      "p99_ms": 41929.151642510005,
+      "max_ms": 42193.141185
+     },
+     "flood_window": {
+      "n_sent_ok": 1079984,
+      "n_first_receipts": 1079984,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 25222.0165145,
+      "p95_ms": 41606.71073085,
+      "p99_ms": 42601.48247663,
+      "max_ms": 42838.535312
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2560.0,
+     "cutoff_ns": 1792593660053625380,
+     "full_window": {
+      "n_sent_ok": 2850,
+      "n_first_receipts": 2850,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 200.77529049999998,
+      "p95_ms": 304.8995789,
+      "p99_ms": 404.89060997999997,
+      "max_ms": 610.238632
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 200.784811,
+      "p95_ms": 303.98668265,
+      "p99_ms": 403.85176641,
+      "max_ms": 610.238632
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1140003,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 35.52435874938965,
+     "p95": 61.85195739269256,
+     "max": 65.31567120552063
+    },
+    "alert_latency_all_s": {
+     "p50": 34.6953182220459,
+     "p95": 61.34753971099853,
+     "max": 65.31567120552063
+    },
+    "threshold_alerts_during_production": [
+     45.6,
+     45.6,
+     108.4,
+     108.4,
+     167.9,
+     167.9,
+     228.4,
+     228.4,
+     287.9,
+     287.9,
+     345.8,
+     345.8
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925932512000000000,
+    "seq_end": 925932512000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.0023809659979,
+    "achieved_rate": 9.996587328218256,
+    "start_ns": 1792593256534463771,
+    "end_ns": 1792593556537050651,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "61b64046cdda1f60277807b9d274d2649769b040de7506c7903db67ac47e3477"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 925932511000000000,
+    "seq_end": 925932511001079996,
+    "n_sent": 1079996,
+    "send_errors": 0,
+    "elapsed_s": 180.00446816699696,
+    "achieved_rate": 5999.828843126532,
+    "start_ns": 1792593316534390664,
+    "end_ns": 1792593496540426260,
+    "n_attempted": 1079996,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "9ebb7d318528c2690e720c444017799b6112b148b173937569a0390e6f62cbf2"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925932510000000000,
+    "seq_end": 925932510000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.00046175900206,
+    "achieved_rate": 199.99635883293644,
+    "start_ns": 1792593256534463920,
+    "end_ns": 1792593556535722689,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "ab6731f7ce799f91778450d3c4142ff17141f814fb01f261179721e273fd14ed"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-sep-f6000-r1",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 2240088.0,
+    "minimum_khz": 395286,
+    "maximum_khz": 2406425
+   },
+   "host_clock_offset_p99_p01_span_ns": 2327,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e5-alerts-a-sep-f6000-r2": {
+  "result": {
+   "id": "rev27-e5-alerts-a-sep-f6000-r2",
+   "spec": {
+    "id": "rev27-e5-alerts-a-sep-f6000-r2",
+    "phase": "E5-alerts",
+    "variant": "A-sep",
+    "mode": "udp",
+    "repetition": 2,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r2",
+    "sequence_index": 5,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 1.041,
+     "mem_gib": 3.8212890625,
+     "samples": 71
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.056640625,
+     "samples": 71
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.727,
+     "mem_gib": 0.0615234375,
+     "samples": 71
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.19699999999999998,
+     "mem_gib": 1.03515625,
+     "samples": 71
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.019,
+     "mem_gib": 0.5322265625,
+     "samples": 71
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.759,
+     "mem_gib": 1.3037109375,
+     "samples": 71
+    }
+   },
+   "scheduled_start_ns": 1792597350412379648,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792597699978058753,
+    "end_ns": 1792597713747297855
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2304.0,
+     "cutoff_ns": 1792597699978058753,
+     "full_window": {
+      "n_sent_ok": 57000,
+      "n_first_receipts": 57000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 12504.1301855,
+      "p95_ms": 33542.59827275,
+      "p99_ms": 35062.750985900006,
+      "max_ms": 35426.164175
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 18364.359429,
+      "p95_ms": 33737.12057524998,
+      "p99_ms": 35112.43516989,
+      "max_ms": 35426.164175
+     }
+    },
+    "flood": {
+     "n_attempted": 1079982,
+     "n_sent_ok": 1079982,
+     "n_send_errors": 0,
+     "n_first_receipts": 1079982,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 512.0,
+     "cutoff_ns": 1792597699978058753,
+     "full_window": {
+      "n_sent_ok": 990015,
+      "n_first_receipts": 990015,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 19339.272644,
+      "p95_ms": 33503.2390572,
+      "p99_ms": 34228.38668284,
+      "max_ms": 34712.37292
+     },
+     "flood_window": {
+      "n_sent_ok": 1079982,
+      "n_first_receipts": 1079982,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 18370.689606,
+      "p95_ms": 33739.0870772,
+      "p99_ms": 35110.94440167,
+      "max_ms": 35428.869784
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2304.0,
+     "cutoff_ns": 1792597699978058753,
+     "full_window": {
+      "n_sent_ok": 2850,
+      "n_first_receipts": 2850,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 200.8010155,
+      "p95_ms": 304.5059232,
+      "p99_ms": 404.65019454,
+      "max_ms": 601.21417
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 200.7105965,
+      "p95_ms": 303.38228525,
+      "p99_ms": 314.9191272599999,
+      "max_ms": 501.048153
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1139989,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 35.42178916931152,
+     "p95": 61.714379012584686,
+     "max": 64.95574903488159
+    },
+    "alert_latency_all_s": {
+     "p50": 34.60490846633911,
+     "p95": 61.22595088481903,
+     "max": 64.95574903488159
+    },
+    "threshold_alerts_during_production": [
+     45.0,
+     45.0,
+     108.1,
+     108.1,
+     167.4,
+     167.4,
+     227.5,
+     227.5,
+     287.2,
+     287.2,
+     345.1,
+     345.1
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925973452000000000,
+    "seq_end": 925973452000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00082693500735,
+    "achieved_rate": 9.996639111430543,
+    "start_ns": 1792597350412600086,
+    "end_ns": 1792597650413767521,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "6c512ade48febcd1f8623d63e6be9a0eb1469d40cd6ecd202135ef06d6836bcf"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 925973451000000000,
+    "seq_end": 925973451001079982,
+    "n_sent": 1079982,
+    "send_errors": 0,
+    "elapsed_s": 180.00216843200906,
+    "achieved_rate": 5999.82772100845,
+    "start_ns": 1792597410412451048,
+    "end_ns": 1792597590416083994,
+    "n_attempted": 1079982,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "0f34736b7274e397f90004e51ea1d20a9629b22eb3cd2720c3250d9ad1b91f87"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925973450000000000,
+    "seq_end": 925973450000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.00095169999986,
+    "achieved_rate": 199.99603221258724,
+    "start_ns": 1792597350412600335,
+    "end_ns": 1792597650414624705,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "c8c245a4a9539763a8a221173442615d51713c803ed3d8f87ca5a3f8bf488337"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-sep-f6000-r2",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 2258106.5,
+    "minimum_khz": 395344,
+    "maximum_khz": 2408791
+   },
+   "host_clock_offset_p99_p01_span_ns": 2545,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e5-alerts-a-sep-f6000-r3": {
+  "result": {
+   "id": "rev27-e5-alerts-a-sep-f6000-r3",
+   "spec": {
+    "id": "rev27-e5-alerts-a-sep-f6000-r3",
+    "phase": "E5-alerts",
+    "variant": "A-sep",
+    "mode": "udp",
+    "repetition": 3,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r3",
+    "sequence_index": 9,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 0.8855,
+     "mem_gib": 3.84814453125,
+     "samples": 82
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.052734375,
+     "samples": 82
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.0825,
+     "mem_gib": 0.0634765625,
+     "samples": 82
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.187,
+     "mem_gib": 1.025390625,
+     "samples": 82
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.018000000000000002,
+     "mem_gib": 0.52783203125,
+     "samples": 82
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.7364999999999999,
+     "mem_gib": 1.48828125,
+     "samples": 82
+    }
+   },
+   "scheduled_start_ns": 1792600637505419264,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792601040689409831,
+    "end_ns": 1792601055602628574
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792601040689409831,
+     "full_window": {
+      "n_sent_ok": 57002,
+      "n_first_receipts": 57002,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 12056.5901225,
+      "p95_ms": 34162.32224325,
+      "p99_ms": 35115.36529056,
+      "max_ms": 35424.517187
+     },
+     "flood_window": {
+      "n_sent_ok": 35999,
+      "n_first_receipts": 35999,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 17968.510311,
+      "p95_ms": 34676.4979766,
+      "p99_ms": 35150.633065899994,
+      "max_ms": 35424.517187
+     }
+    },
+    "flood": {
+     "n_attempted": 1079987,
+     "n_sent_ok": 1079987,
+     "n_send_errors": 0,
+     "n_first_receipts": 1079987,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 512.0,
+     "cutoff_ns": 1792601040689409831,
+     "full_window": {
+      "n_sent_ok": 990046,
+      "n_first_receipts": 990046,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 19255.72152,
+      "p95_ms": 34098.2359165,
+      "p99_ms": 34774.4215408,
+      "max_ms": 34849.708585
+     },
+     "flood_window": {
+      "n_sent_ok": 1079987,
+      "n_first_receipts": 1079987,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 17976.423333,
+      "p95_ms": 34677.994166,
+      "p99_ms": 35151.341956820004,
+      "max_ms": 35426.041776
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2304.0,
+     "cutoff_ns": 1792601040689409831,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 200.543526,
+      "p95_ms": 304.3800885,
+      "p99_ms": 401.9799355,
+      "max_ms": 600.667933
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 200.5391895,
+      "p95_ms": 303.3305074,
+      "p99_ms": 309.96306536000003,
+      "max_ms": 506.227887
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1139994,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 35.548582553863525,
+     "p95": 61.57008966207504,
+     "max": 65.12242674827576
+    },
+    "alert_latency_all_s": {
+     "p50": 34.600165605545044,
+     "p95": 61.27534079551697,
+     "max": 65.12242674827576
+    },
+    "threshold_alerts_during_production": [
+     45.3,
+     45.3,
+     108.6,
+     108.6,
+     167.6,
+     167.6,
+     228.0,
+     228.0,
+     286.9,
+     286.9,
+     345.5,
+     345.5
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 926006322000000000,
+    "seq_end": 926006322000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.0021971100068,
+    "achieved_rate": 9.996593454614956,
+    "start_ns": 1792600637505640174,
+    "end_ns": 1792600937508044150,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "9644e4b92987a72dbb062ed739a395dbb4f97cfe495abeb385d1e4ba7283f989"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 926006321000000000,
+    "seq_end": 926006321001079987,
+    "n_sent": 1079987,
+    "send_errors": 0,
+    "elapsed_s": 180.00297453599342,
+    "achieved_rate": 5999.828629409931,
+    "start_ns": 1792600697505504442,
+    "end_ns": 1792600877509791524,
+    "n_attempted": 1079987,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "639f3c208f4d139c18e44c4f1f4939cb109d252045768b1e2090c99e0122e140"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 926006320000000000,
+    "seq_end": 926006320000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0047339980083,
+    "achieved_rate": 199.99351077039447,
+    "start_ns": 1792600637505640383,
+    "end_ns": 1792600937511176791,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "92ebc132c3271cebef9bc0d3cf95eea2f4658e0a8bbc329c67b161306028aef3"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-sep-f6000-r3",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 2053803.0,
+    "minimum_khz": 389489,
+    "maximum_khz": 2404102
+   },
+   "host_clock_offset_p99_p01_span_ns": 1762,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e5-alerts-a-shared-f0-r1": {
+  "result": {
+   "id": "rev27-e5-alerts-a-shared-f0-r1",
+   "spec": {
+    "id": "rev27-e5-alerts-a-shared-f0-r1",
+    "phase": "E5-alerts",
+    "variant": "A-shared",
+    "mode": "udp",
+    "repetition": 1,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r1",
+    "sequence_index": 2,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 0.0875,
+     "mem_gib": 3.80224609375,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.0498046875,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.07400000000000001,
+     "mem_gib": 0.0537109375,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.0835,
+     "mem_gib": 1.01806640625,
+     "samples": 76
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.009000000000000001,
+     "mem_gib": 0.5322265625,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.0905,
+     "mem_gib": 1.23046875,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792594701726160384,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792595092646405239,
+    "end_ns": 1792595093374572007
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 1792.0,
+     "cutoff_ns": 1792595092646405239,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 57001,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 885.140101,
+      "p95_ms": 1672.761274,
+      "p99_ms": 1746.247774,
+      "max_ms": 2036.020797
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 883.466928,
+      "p95_ms": 1673.1404865999998,
+      "p99_ms": 1745.51830775,
+      "max_ms": 1840.107085
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2816.0,
+     "cutoff_ns": 1792595092646405239,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 892.132025,
+      "p95_ms": 1682.5282164999999,
+      "p99_ms": 1745.6171825000001,
+      "max_ms": 1999.235797
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 905.1719069999999,
+      "p95_ms": 1675.200209,
+      "p99_ms": 1745.65659763,
+      "max_ms": 1796.014193
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 32.34679329395294,
+     "p95": 59.26304576396942,
+     "max": 62.83633613586426
+    },
+    "alert_latency_all_s": {
+     "p50": 32.33791470527649,
+     "p95": 59.064091038703914,
+     "max": 62.83633613586426
+    },
+    "threshold_alerts_during_production": [
+     45.9,
+     45.9,
+     105.9,
+     105.9,
+     166.0,
+     166.0,
+     226.0,
+     226.0,
+     286.1,
+     286.1,
+     346.1,
+     346.1
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925946962000000000,
+    "seq_end": 925946962000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.0022937169924,
+    "achieved_rate": 9.996590235503701,
+    "start_ns": 1792594701726388844,
+    "end_ns": 1792595001728898189,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "0759a8b272c564355fc4354708d28cfef8682be84cea584b9566e03e4054267c"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925946960000000000,
+    "seq_end": 925946960000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0031675890059,
+    "achieved_rate": 199.99455499815448,
+    "start_ns": 1792594701726411124,
+    "end_ns": 1792595001730286040,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "11c00c03628cc5074e525efc60e43b5e6530ad6b673170a74869d290f4221a66"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-shared-f0-r1",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 1024802.5,
+    "minimum_khz": 397833,
+    "maximum_khz": 2408163
+   },
+   "host_clock_offset_p99_p01_span_ns": 2426,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e5-alerts-a-shared-f0-r2": {
+  "result": {
+   "id": "rev27-e5-alerts-a-shared-f0-r2",
+   "spec": {
+    "id": "rev27-e5-alerts-a-shared-f0-r2",
+    "phase": "E5-alerts",
+    "variant": "A-shared",
+    "mode": "udp",
+    "repetition": 2,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r2",
+    "sequence_index": 6,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 0.0965,
+     "mem_gib": 3.80712890625,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.05078125,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.076,
+     "mem_gib": 0.0634765625,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.1035,
+     "mem_gib": 1.01416015625,
+     "samples": 76
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.015,
+     "mem_gib": 0.611328125,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.0995,
+     "mem_gib": 1.19482421875,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792598017199993600,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792598408221634557,
+    "end_ns": 1792598408921842506
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792598408221634557,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 57001,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 885.880129,
+      "p95_ms": 1672.172036,
+      "p99_ms": 1745.235143,
+      "max_ms": 2005.668065
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 884.2818245,
+      "p95_ms": 1672.99468995,
+      "p99_ms": 1745.28428938,
+      "max_ms": 1864.009317
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2816.0,
+     "cutoff_ns": 1792598408221634557,
+     "full_window": {
+      "n_sent_ok": 2850,
+      "n_first_receipts": 2850,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 890.3924589999999,
+      "p95_ms": 1675.1985421999996,
+      "p99_ms": 1737.5908221099999,
+      "max_ms": 1813.419732
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 875.992382,
+      "p95_ms": 1679.40246315,
+      "p99_ms": 1737.71954427,
+      "max_ms": 1813.419732
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 32.5534565448761,
+     "p95": 59.3327086687088,
+     "max": 63.003331899642944
+    },
+    "alert_latency_all_s": {
+     "p50": 32.486690282821655,
+     "p95": 59.925918507575986,
+     "max": 66.37342262268066
+    },
+    "threshold_alerts_during_production": [
+     45.7,
+     45.7,
+     105.8,
+     105.8,
+     165.8,
+     165.8,
+     225.8,
+     225.8,
+     285.9,
+     285.9,
+     348.7,
+     348.7
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925980122000000000,
+    "seq_end": 925980122000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.0035625409946,
+    "achieved_rate": 9.99654795629367,
+    "start_ns": 1792598017200214349,
+    "end_ns": 1792598317204064054,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "6fdea04941f175e84bccdea83c51371f804bee86c01d80b1f073839923dc9058"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925980120000000000,
+    "seq_end": 925980120000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.00442285199824,
+    "achieved_rate": 199.99371819127953,
+    "start_ns": 1792598017200212753,
+    "end_ns": 1792598317205477899,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "cfceeab4ad790c07ec6c804ddb749679191cdd1d9fe829694961b33519b9957e"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-shared-f0-r2",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 1067733.0,
+    "minimum_khz": 389189,
+    "maximum_khz": 2407017
+   },
+   "host_clock_offset_p99_p01_span_ns": 2630,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e5-alerts-a-shared-f0-r3": {
+  "result": {
+   "id": "rev27-e5-alerts-a-shared-f0-r3",
+   "spec": {
+    "id": "rev27-e5-alerts-a-shared-f0-r3",
+    "phase": "E5-alerts",
+    "variant": "A-shared",
+    "mode": "udp",
+    "repetition": 3,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r3",
+    "sequence_index": 10,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 0.11299999999999999,
+     "mem_gib": 3.8125,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.0546875,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.07350000000000001,
+     "mem_gib": 0.0546875,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.078,
+     "mem_gib": 1.025390625,
+     "samples": 76
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.015,
+     "mem_gib": 0.63623046875,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.08149999999999999,
+     "mem_gib": 1.22265625,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792601384474319360,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792601775487084234,
+    "end_ns": 1792601776198440640
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 1792.0,
+     "cutoff_ns": 1792601775487084234,
+     "full_window": {
+      "n_sent_ok": 57000,
+      "n_first_receipts": 57000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 886.9806510000001,
+      "p95_ms": 1672.27970635,
+      "p99_ms": 1743.8533331800002,
+      "max_ms": 2076.189235
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 886.008512,
+      "p95_ms": 1673.64279425,
+      "p99_ms": 1743.4283397800002,
+      "max_ms": 1799.638517
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 3328.0,
+     "cutoff_ns": 1792601775487084234,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 902.98384,
+      "p95_ms": 1677.6606419999998,
+      "p99_ms": 1738.7550705,
+      "max_ms": 1774.745942
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 917.419639,
+      "p95_ms": 1682.2746,
+      "p99_ms": 1734.81083858,
+      "max_ms": 1762.996481
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 32.51605701446533,
+     "p95": 59.42029651403427,
+     "max": 62.93480038642883
+    },
+    "alert_latency_all_s": {
+     "p50": 32.46718382835388,
+     "p95": 59.28636443614959,
+     "max": 63.23818874359131
+    },
+    "threshold_alerts_during_production": [
+     45.7,
+     45.7,
+     105.8,
+     105.8,
+     166.1,
+     166.1,
+     225.9,
+     225.9,
+     286.0,
+     286.0,
+     345.8,
+     345.8
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 926013792000000000,
+    "seq_end": 926013792000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.0049699230003,
+    "achieved_rate": 9.996501060531521,
+    "start_ns": 1792601384474533850,
+    "end_ns": 1792601684479677720,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "872002fc577aa95d7382c12945f077cf73447912c22d0f99b22f234e6df8c8a3"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 926013790000000000,
+    "seq_end": 926013790000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0005208049988,
+    "achieved_rate": 199.99631946972357,
+    "start_ns": 1792601384474532764,
+    "end_ns": 1792601684475750056,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "a965b9a6e8f20982c64bf8d55440d27aead3627b131eb9d84d32ee6bf4e15fb3"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-shared-f0-r3",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 894006.0,
+    "minimum_khz": 395699,
+    "maximum_khz": 2403534
+   },
+   "host_clock_offset_p99_p01_span_ns": 755,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e5-alerts-a-shared-f6000-r1": {
+  "result": {
+   "id": "rev27-e5-alerts-a-shared-f6000-r1",
+   "spec": {
+    "id": "rev27-e5-alerts-a-shared-f6000-r1",
+    "phase": "E5-alerts",
+    "variant": "A-shared",
+    "mode": "udp",
+    "repetition": 1,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r1",
+    "sequence_index": 4,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "timed_out_incomplete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 0.053,
+     "mem_gib": 3.9130859375,
+     "samples": 181
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.0,
+     "mem_gib": 0.0478515625,
+     "samples": 181
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.0,
+     "mem_gib": 0.0615234375,
+     "samples": 181
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.063,
+     "mem_gib": 1.017578125,
+     "samples": 181
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.013000000000000001,
+     "mem_gib": 0.564453125,
+     "samples": 181
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.008,
+     "mem_gib": 1.3212890625,
+     "samples": 181
+    }
+   },
+   "scheduled_start_ns": 1792596125082074112,
+   "scan": {
+    "status": "timed_out_incomplete",
+    "start_ns": 1792597025168674116,
+    "end_ns": 1792597037892516516
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59951,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 48,
+     "received_at_cutoff_status": "incomplete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792597025168674116,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 56953,
+      "n_missing_at_cutoff": 48,
+      "missing_pct_at_cutoff": 0.08420904896405326,
+      "p50_ms": 846.531291,
+      "p95_ms": 18001.913726799998,
+      "p99_ms": 19437.883720279995,
+      "max_ms": 19748.842811
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 35952,
+      "n_missing_at_cutoff": 48,
+      "missing_pct_at_cutoff": 0.13333333333333333,
+      "p50_ms": 328.479596,
+      "p95_ms": 18696.482755600002,
+      "p99_ms": 19563.16833438,
+      "max_ms": 19748.842811
+     }
+    },
+    "flood": {
+     "n_attempted": 1079998,
+     "n_sent_ok": 1079998,
+     "n_send_errors": 0,
+     "n_first_receipts": 1078521,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 1477,
+     "received_at_cutoff_status": "incomplete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 512.0,
+     "cutoff_ns": 1792597025168674116,
+     "full_window": {
+      "n_sent_ok": 990039,
+      "n_first_receipts": 988562,
+      "n_missing_at_cutoff": 1477,
+      "missing_pct_at_cutoff": 0.1491860421660157,
+      "p50_ms": 273.9082995,
+      "p95_ms": 18769.38921745,
+      "p99_ms": 19570.406225220002,
+      "max_ms": 19753.135594
+     },
+     "flood_window": {
+      "n_sent_ok": 1079969,
+      "n_first_receipts": 1078492,
+      "n_missing_at_cutoff": 1477,
+      "missing_pct_at_cutoff": 0.1367631848691953,
+      "p50_ms": 331.633462,
+      "p95_ms": 18697.2342213,
+      "p99_ms": 19561.40688264,
+      "max_ms": 19753.135594
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2560.0,
+     "cutoff_ns": 1792597025168674116,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 904.971273,
+      "p95_ms": 17987.8889905,
+      "p99_ms": 19430.767143,
+      "max_ms": 19737.947926
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 333.86594149999996,
+      "p95_ms": 18681.07453775,
+      "p99_ms": 19555.17335907,
+      "max_ms": 19737.947926
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1138480,
+     "NoPorts": 0,
+     "InErrors": 1525,
+     "RcvbufErrors": 1525,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 39.43070709705353,
+     "p95": 65.4756064414978,
+     "max": 73.80210471153259
+    },
+    "alert_latency_all_s": {
+     "p50": 36.42327427864075,
+     "p95": 63.18032886981964,
+     "max": 73.80210471153259
+    },
+    "threshold_alerts_during_production": [
+     45.8,
+     45.8,
+     108.0,
+     108.0,
+     168.2,
+     168.2,
+     236.0,
+     236.0,
+     286.3,
+     286.3,
+     346.3,
+     346.3
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925961202000000000,
+    "seq_end": 925961202000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.0027343270049,
+    "achieved_rate": 9.996575553645025,
+    "start_ns": 1792596125082310006,
+    "end_ns": 1792596425085268348,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "274d4910cbf74487bd5542944c6dab104d42270121d5e11d798b5700c004ba21"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 925961201000000000,
+    "seq_end": 925961201001079998,
+    "n_sent": 1079998,
+    "send_errors": 0,
+    "elapsed_s": 180.0048098739935,
+    "achieved_rate": 5999.8285643367935,
+    "start_ns": 1792596185082292033,
+    "end_ns": 1792596365088527732,
+    "n_attempted": 1079998,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "074c64964825829c89fd1b928284da91eb3ff85dc2d5d05ad1fb59ea4539457d"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925961200000000000,
+    "seq_end": 925961200000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0044756040006,
+    "achieved_rate": 199.9936830249072,
+    "start_ns": 1792596125082310018,
+    "end_ns": 1792596425087584814,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "015430a7344fa584b843bebe7165ad972a139cad27f34a8578d4a17b6441bad1"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-shared-f6000-r1",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [
+    "nginx:missing_at_cutoff_48",
+    "flood:missing_at_cutoff_1477",
+    "drain_timed_out_distinct_ids_incomplete"
+   ],
+   "frequency_summary": {
+    "median_khz": 701470.0,
+    "minimum_khz": 394997,
+    "maximum_khz": 2405911
+   },
+   "host_clock_offset_p99_p01_span_ns": 1740,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e5-alerts-a-shared-f6000-r2": {
+  "result": {
+   "id": "rev27-e5-alerts-a-shared-f6000-r2",
+   "spec": {
+    "id": "rev27-e5-alerts-a-shared-f6000-r2",
+    "phase": "E5-alerts",
+    "variant": "A-shared",
+    "mode": "udp",
+    "repetition": 2,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r2",
+    "sequence_index": 8,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "timed_out_incomplete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 0.047,
+     "mem_gib": 3.8310546875,
+     "samples": 181
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.0,
+     "mem_gib": 0.0458984375,
+     "samples": 181
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.0,
+     "mem_gib": 0.052734375,
+     "samples": 181
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.040999999999999995,
+     "mem_gib": 1.04296875,
+     "samples": 181
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.012,
+     "mem_gib": 0.6650390625,
+     "samples": 181
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.009000000000000001,
+     "mem_gib": 1.3642578125,
+     "samples": 181
+    }
+   },
+   "scheduled_start_ns": 1792599361361988352,
+   "scan": {
+    "status": "timed_out_incomplete",
+    "start_ns": 1792600261455091384,
+    "end_ns": 1792600274372872573
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59882,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 117,
+     "received_at_cutoff_status": "incomplete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792600261455091384,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 56884,
+      "n_missing_at_cutoff": 117,
+      "missing_pct_at_cutoff": 0.20525955684987982,
+      "p50_ms": 722.1265245,
+      "p95_ms": 11721.478085999997,
+      "p99_ms": 12573.468090979999,
+      "max_ms": 12845.970364
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 35883,
+      "n_missing_at_cutoff": 117,
+      "missing_pct_at_cutoff": 0.325,
+      "p50_ms": 112.366201,
+      "p95_ms": 12220.906953,
+      "p99_ms": 12623.9584016,
+      "max_ms": 12845.970364
+     }
+    },
+    "flood": {
+     "n_attempted": 1079995,
+     "n_sent_ok": 1079995,
+     "n_send_errors": 0,
+     "n_first_receipts": 1076501,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 3494,
+     "received_at_cutoff_status": "incomplete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 512.0,
+     "cutoff_ns": 1792600261455091384,
+     "full_window": {
+      "n_sent_ok": 990040,
+      "n_first_receipts": 986546,
+      "n_missing_at_cutoff": 3494,
+      "missing_pct_at_cutoff": 0.3529150337360107,
+      "p50_ms": 157.003009,
+      "p95_ms": 12253.96175675,
+      "p99_ms": 12632.0114907,
+      "max_ms": 12848.321133
+     },
+     "flood_window": {
+      "n_sent_ok": 1079984,
+      "n_first_receipts": 1076490,
+      "n_missing_at_cutoff": 3494,
+      "missing_pct_at_cutoff": 0.323523311456466,
+      "p50_ms": 113.5865325,
+      "p95_ms": 12219.99112135,
+      "p99_ms": 12625.05159132,
+      "max_ms": 12848.321133
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2304.0,
+     "cutoff_ns": 1792600261455091384,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 703.337438,
+      "p95_ms": 11654.7944075,
+      "p99_ms": 12587.116711499999,
+      "max_ms": 12838.51426
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 122.3400735,
+      "p95_ms": 12184.3999277,
+      "p99_ms": 12653.91959591,
+      "max_ms": 12838.51426
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1136391,
+     "NoPorts": 0,
+     "InErrors": 3611,
+     "RcvbufErrors": 3611,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 37.83246052265167,
+     "p95": 63.4799844622612,
+     "max": 69.0162570476532
+    },
+    "alert_latency_all_s": {
+     "p50": 35.64402675628662,
+     "p95": 62.228798151016235,
+     "max": 69.0162570476532
+    },
+    "threshold_alerts_during_production": [
+     45.4,
+     45.4,
+     107.7,
+     107.7,
+     168.6,
+     168.6,
+     227.6,
+     227.6,
+     285.5,
+     285.5,
+     345.4,
+     345.4
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925993562000000000,
+    "seq_end": 925993562000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00475239199295,
+    "achieved_rate": 9.996508308913183,
+    "start_ns": 1792599361362073278,
+    "end_ns": 1792599661367032472,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "270cbf9e16686ff54d834f1d51bb1acb67c535b113c1405ef8323ed48962ce0a"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 925993561000000000,
+    "seq_end": 925993561001079995,
+    "n_sent": 1079995,
+    "send_errors": 0,
+    "elapsed_s": 180.0043790560012,
+    "achieved_rate": 5999.826257915662,
+    "start_ns": 1792599421362109210,
+    "end_ns": 1792599601367821969,
+    "n_attempted": 1079995,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "a61bae588571373a734cd4255616639179be07036250a0b286979ec006d2d821"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925993560000000000,
+    "seq_end": 925993560000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0049786800082,
+    "achieved_rate": 199.9933476570608,
+    "start_ns": 1792599361362119268,
+    "end_ns": 1792599661367802891,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "7d3b74ed2c15b226b4c56c51ccfaf8a06f68bfac766c5682b4adebf695299afb"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-shared-f6000-r2",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [
+    "nginx:missing_at_cutoff_117",
+    "flood:missing_at_cutoff_3494",
+    "drain_timed_out_distinct_ids_incomplete"
+   ],
+   "frequency_summary": {
+    "median_khz": 958951.5,
+    "minimum_khz": 386913,
+    "maximum_khz": 2412532
+   },
+   "host_clock_offset_p99_p01_span_ns": 1328,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e5-alerts-a-shared-f6000-r3": {
+  "result": {
+   "id": "rev27-e5-alerts-a-shared-f6000-r3",
+   "spec": {
+    "id": "rev27-e5-alerts-a-shared-f6000-r3",
+    "phase": "E5-alerts",
+    "variant": "A-shared",
+    "mode": "udp",
+    "repetition": 3,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": true,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E5-r3",
+    "sequence_index": 12,
+    "extra_services": [
+     "kibana"
+    ],
+    "detection_rules": {
+     "bench-auth-each": "query rule, one alert per sshd failed login, 1 min interval, 6 min look-back",
+     "bench-auth-threshold": "threshold rule, >= 5 failed logins on one host.name, 1 min interval, 6 min look-back"
+    },
+    "storage": "secured Elasticsearch 8.19.7 (bench-es-sec) with Kibana 8.19.7 detection engine"
+   },
+   "status": "timed_out_incomplete",
+   "container_resource_medians": {
+    "bench-es-sec": {
+     "cpu_cores": 0.042,
+     "mem_gib": 3.8662109375,
+     "samples": 181
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.0,
+     "mem_gib": 0.0498046875,
+     "samples": 181
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.0,
+     "mem_gib": 0.060546875,
+     "samples": 181
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.068,
+     "mem_gib": 1.0283203125,
+     "samples": 181
+    },
+    "bench-kibana-sec": {
+     "cpu_cores": 0.006999999999999999,
+     "mem_gib": 0.6728515625,
+     "samples": 181
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.016,
+     "mem_gib": 1.32421875,
+     "samples": 181
+    }
+   },
+   "scheduled_start_ns": 1792602748072052224,
+   "scan": {
+    "status": "timed_out_incomplete",
+    "start_ns": 1792603648155872804,
+    "end_ns": 1792603660880247579
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59650,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 349,
+     "received_at_cutoff_status": "incomplete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792603648155872804,
+     "full_window": {
+      "n_sent_ok": 57000,
+      "n_first_receipts": 56651,
+      "n_missing_at_cutoff": 349,
+      "missing_pct_at_cutoff": 0.612280701754386,
+      "p50_ms": 849.925121,
+      "p95_ms": 11635.724255500001,
+      "p99_ms": 13753.665873,
+      "max_ms": 14258.274699
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 35651,
+      "n_missing_at_cutoff": 349,
+      "missing_pct_at_cutoff": 0.9694444444444444,
+      "p50_ms": 177.992393,
+      "p95_ms": 12948.192574,
+      "p99_ms": 13845.5778625,
+      "max_ms": 14258.274699
+     }
+    },
+    "flood": {
+     "n_attempted": 1079994,
+     "n_sent_ok": 1079994,
+     "n_send_errors": 0,
+     "n_first_receipts": 1069519,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 10475,
+     "received_at_cutoff_status": "incomplete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 512.0,
+     "cutoff_ns": 1792603648155872804,
+     "full_window": {
+      "n_sent_ok": 990026,
+      "n_first_receipts": 979551,
+      "n_missing_at_cutoff": 10475,
+      "missing_pct_at_cutoff": 1.058053020829756,
+      "p50_ms": 519.022055,
+      "p95_ms": 13072.1778955,
+      "p99_ms": 13855.386716,
+      "max_ms": 14259.444524
+     },
+     "flood_window": {
+      "n_sent_ok": 1079993,
+      "n_first_receipts": 1069518,
+      "n_missing_at_cutoff": 10475,
+      "missing_pct_at_cutoff": 0.969913693885053,
+      "p50_ms": 183.402864,
+      "p95_ms": 12956.459192899998,
+      "p99_ms": 13846.95349449,
+      "max_ms": 14259.444524
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2560.0,
+     "cutoff_ns": 1792603648155872804,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 914.848369,
+      "p95_ms": 11738.0540215,
+      "p99_ms": 13712.511565,
+      "max_ms": 14138.913545
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 254.78310699999997,
+      "p95_ms": 12952.9346299,
+      "p99_ms": 13827.478129809999,
+      "max_ms": 14138.913545
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1129177,
+     "NoPorts": 0,
+     "InErrors": 10824,
+     "RcvbufErrors": 10824,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop",
+   "alerts_e2e": {
+    "rules": [
+     "bench-auth-each",
+     "bench-auth-threshold"
+    ],
+    "auth_sent": 2999,
+    "alerts_per_event": 2999,
+    "events_without_alert": 0,
+    "window_sent": 1800,
+    "window_alerts": 1800,
+    "window_without_alert_pct": 0.0,
+    "alert_latency_window_s": {
+     "p50": 38.054741859436035,
+     "p95": 63.63329848051071,
+     "max": 71.35800909996033
+    },
+    "alert_latency_all_s": {
+     "p50": 35.72408437728882,
+     "p95": 62.41367344856262,
+     "max": 71.35800909996033
+    },
+    "threshold_alerts_during_production": [
+     44.7,
+     44.7,
+     107.8,
+     107.8,
+     168.8,
+     168.8,
+     226.7,
+     226.7,
+     285.1,
+     285.1,
+     344.9,
+     344.9
+    ],
+    "note": "Alert time is Kibana's alert document @timestamp (rule execution), production time comes from the generator's bseq copied into the alert; rules run every minute, so latency includes up to one schedule interval."
+   }
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 926027432000000000,
+    "seq_end": 926027432000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.0046319880057,
+    "achieved_rate": 9.996512320916102,
+    "start_ns": 1792602748072283411,
+    "end_ns": 1792603048077105950,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "cf82fd5249ac14edbada9f3f407830be6b9afc252d57ca0ecf6ba87a534fb669"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 926027431000000000,
+    "seq_end": 926027431001079994,
+    "n_sent": 1079994,
+    "send_errors": 0,
+    "elapsed_s": 180.00421641100547,
+    "achieved_rate": 5999.826123706117,
+    "start_ns": 1792602808072131366,
+    "end_ns": 1792602988077768176,
+    "n_attempted": 1079994,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "17e95c54bc5fdb3041dc3e221f4ba362593df349b8f4550f409362277aea38f4"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 926027430000000000,
+    "seq_end": 926027430000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0024584269995,
+    "achieved_rate": 199.99502775608,
+    "start_ns": 1792602748072283173,
+    "end_ns": 1792603048075540926,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "e90144ac95041cc468ddf8ebb6f151c62608e867c5c037ce8897df052343f092"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e5-alerts-a-shared-f6000-r3",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [
+    "nginx:missing_at_cutoff_349",
+    "flood:missing_at_cutoff_10475",
+    "drain_timed_out_distinct_ids_incomplete"
+   ],
+   "frequency_summary": {
+    "median_khz": 857318.5,
+    "minimum_khz": 395448,
+    "maximum_khz": 2407430
+   },
+   "host_clock_offset_p99_p01_span_ns": 873,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ }
+}

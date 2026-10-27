@@ -1,0 +1,10 @@
+{
+  "runs": 51,
+  "streams": 87,
+  "independent_counts_and_quantiles": "passed",
+  "generator_hashes": "passed",
+  "independent_recovery_endpoints": "passed",
+  "total_sent": 52631588,
+  "total_missing": 1620269,
+  "total_duplicates": 19833
+}

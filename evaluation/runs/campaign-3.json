@@ -1,0 +1,3191 @@
+{
+ "rev27-e3-a-pipelines-f0-r1": {
+  "result": {
+   "id": "rev27-e3-a-pipelines-f0-r1",
+   "spec": {
+    "id": "rev27-e3-a-pipelines-f0-r1",
+    "phase": "E3",
+    "variant": "A-pipelines",
+    "mode": "udp",
+    "repetition": 1,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r1",
+    "sequence_index": 2,
+    "factorial_cell": "shared topic, separate pipelines"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.071,
+     "mem_gib": 3.68408203125,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.05078125,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.0695,
+     "mem_gib": 0.052734375,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.09699999999999999,
+     "mem_gib": 1.01416015625,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.114,
+     "mem_gib": 1.18896484375,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792580825725471232,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792581217337247951,
+    "end_ns": 1792581218063385826
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792581217337247951,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 57001,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 588.707415,
+      "p95_ms": 1108.991895,
+      "p99_ms": 1154.016672,
+      "max_ms": 1230.122524
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 588.5020575,
+      "p95_ms": 1110.02353365,
+      "p99_ms": 1154.9854463600002,
+      "max_ms": 1180.11078
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 7424.0,
+     "cutoff_ns": 1792581217337247951,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 300.511921,
+      "p95_ms": 567.3882205,
+      "p99_ms": 593.9212405000001,
+      "max_ms": 612.86383
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 300.487794,
+      "p95_ms": 568.588158,
+      "p99_ms": 594.37671324,
+      "max_ms": 600.648396
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925808202000000000,
+    "seq_end": 925808202000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00025412000105,
+    "achieved_rate": 9.996658198830694,
+    "start_ns": 1792580825725693822,
+    "end_ns": 1792581125726147112,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "89169f948b3ac15908504b3a3cb5981fd7e7d94d77bdfb14a7a61e7d8c203289"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925808200000000000,
+    "seq_end": 925808200000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0013833470002,
+    "achieved_rate": 199.99574445495617,
+    "start_ns": 1792580825725693583,
+    "end_ns": 1792581125727749498,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "34b3b64a7825047525b196fc7878f620d2c96e3c73218c9dc7318b130f18541c"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-pipelines-f0-r1",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 1204659.0,
+    "minimum_khz": 396271,
+    "maximum_khz": 2405769
+   },
+   "host_clock_offset_p99_p01_span_ns": 2460,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e3-a-pipelines-f0-r2": {
+  "result": {
+   "id": "rev27-e3-a-pipelines-f0-r2",
+   "spec": {
+    "id": "rev27-e3-a-pipelines-f0-r2",
+    "phase": "E3",
+    "variant": "A-pipelines",
+    "mode": "udp",
+    "repetition": 2,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r2",
+    "sequence_index": 6,
+    "factorial_cell": "shared topic, separate pipelines"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.066,
+     "mem_gib": 3.7587890625,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.0537109375,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.075,
+     "mem_gib": 0.052734375,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.10600000000000001,
+     "mem_gib": 1.0400390625,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.1135,
+     "mem_gib": 1.1943359375,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792584076793051648,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792584468266355099,
+    "end_ns": 1792584468969580331
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792584468266355099,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 57001,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 588.903377,
+      "p95_ms": 1109.143687,
+      "p99_ms": 1154.850728,
+      "max_ms": 1202.210511
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 589.7393795,
+      "p95_ms": 1109.9949579,
+      "p99_ms": 1155.62430776,
+      "max_ms": 1190.887717
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 6656.0,
+     "cutoff_ns": 1792584468266355099,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 301.233893,
+      "p95_ms": 567.654498,
+      "p99_ms": 593.6459485,
+      "max_ms": 617.876169
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 301.2298845,
+      "p95_ms": 567.4637723999999,
+      "p99_ms": 594.0469929,
+      "max_ms": 601.878149
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925840712000000000,
+    "seq_end": 925840712000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00447222599905,
+    "achieved_rate": 9.996517644379637,
+    "start_ns": 1792584076793269405,
+    "end_ns": 1792584376797943057,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "09bc7e2950c1d6ffc61cba443512bc2559135e12472d071eb043e7aab7553cbc"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925840710000000000,
+    "seq_end": 925840710000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.00141304499994,
+    "achieved_rate": 199.9957246568042,
+    "start_ns": 1792584076793269780,
+    "end_ns": 1792584376795514735,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "fa47d1143484db2aa2073654fccf9b3edf12e183c462d519fdfd824733bef040"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-pipelines-f0-r2",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 1168701.5,
+    "minimum_khz": 393046,
+    "maximum_khz": 2400626
+   },
+   "host_clock_offset_p99_p01_span_ns": 2091,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e3-a-pipelines-f0-r3": {
+  "result": {
+   "id": "rev27-e3-a-pipelines-f0-r3",
+   "spec": {
+    "id": "rev27-e3-a-pipelines-f0-r3",
+    "phase": "E3",
+    "variant": "A-pipelines",
+    "mode": "udp",
+    "repetition": 3,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r3",
+    "sequence_index": 10,
+    "factorial_cell": "shared topic, separate pipelines"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.053500000000000006,
+     "mem_gib": 3.75390625,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.05224609375,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.073,
+     "mem_gib": 0.056640625,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.11349999999999999,
+     "mem_gib": 1.033203125,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.14300000000000002,
+     "mem_gib": 1.40576171875,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792586412425628928,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792586803845067003,
+    "end_ns": 1792586804569157906
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792586803845067003,
+     "full_window": {
+      "n_sent_ok": 57000,
+      "n_first_receipts": 57000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 589.6716174999999,
+      "p95_ms": 1112.19039805,
+      "p99_ms": 1155.0358628400002,
+      "max_ms": 1209.511529
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 590.0173735,
+      "p95_ms": 1115.3607742499998,
+      "p99_ms": 1156.29949517,
+      "max_ms": 1184.764916
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 6656.0,
+     "cutoff_ns": 1792586803845067003,
+     "full_window": {
+      "n_sent_ok": 2850,
+      "n_first_receipts": 2850,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 302.95115350000003,
+      "p95_ms": 569.6227613,
+      "p99_ms": 594.58151707,
+      "max_ms": 632.870923
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 302.012002,
+      "p95_ms": 568.66779105,
+      "p99_ms": 592.94545895,
+      "max_ms": 604.290328
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925864072000000000,
+    "seq_end": 925864072000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00095982399944,
+    "achieved_rate": 9.99663468330039,
+    "start_ns": 1792586412425888363,
+    "end_ns": 1792586712427059607,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "a9d0dd314488f6655cb38d6e3c9974c406d3529c65077e4a8f407510b2b8d112"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925864070000000000,
+    "seq_end": 925864070000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.00049777499953,
+    "achieved_rate": 199.99633482274842,
+    "start_ns": 1792586412425888510,
+    "end_ns": 1792586712427059725,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "6c0d3b688a8386154ffd2e66f7e54042abea4f024491518d8652aabab6405a9a"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-pipelines-f0-r3",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 1335579.5,
+    "minimum_khz": 395137,
+    "maximum_khz": 2413483
+   },
+   "host_clock_offset_p99_p01_span_ns": 1998,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e3-a-pipelines-f6000-r1": {
+  "result": {
+   "id": "rev27-e3-a-pipelines-f6000-r1",
+   "spec": {
+    "id": "rev27-e3-a-pipelines-f6000-r1",
+    "phase": "E3",
+    "variant": "A-pipelines",
+    "mode": "udp",
+    "repetition": 1,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r1",
+    "sequence_index": 4,
+    "factorial_cell": "shared topic, separate pipelines"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.9045000000000001,
+     "mem_gib": 3.7060546875,
+     "samples": 70
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.0517578125,
+     "samples": 70
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.7404999999999999,
+     "mem_gib": 0.05615234375,
+     "samples": 70
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.3165,
+     "mem_gib": 1.0458984375,
+     "samples": 70
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.889,
+     "mem_gib": 1.2578125,
+     "samples": 70
+    }
+   },
+   "scheduled_start_ns": 1792581955076640512,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792582302190605688,
+    "end_ns": 1792582314803853993
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792582302190605688,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 57001,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 15738.9939,
+      "p95_ms": 39063.055542,
+      "p99_ms": 43369.337668,
+      "max_ms": 44372.531033
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 21426.782087500003,
+      "p95_ms": 39173.36378144999,
+      "p99_ms": 43620.45005661001,
+      "max_ms": 44372.531033
+     }
+    },
+    "flood": {
+     "n_attempted": 1079986,
+     "n_sent_ok": 1079986,
+     "n_send_errors": 0,
+     "n_first_receipts": 1079986,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 512.0,
+     "cutoff_ns": 1792582302190605688,
+     "full_window": {
+      "n_sent_ok": 990024,
+      "n_first_receipts": 990024,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 23771.171739999998,
+      "p95_ms": 38592.1831435,
+      "p99_ms": 39866.45077225,
+      "max_ms": 43634.785613
+     },
+     "flood_window": {
+      "n_sent_ok": 1079986,
+      "n_first_receipts": 1079986,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 21426.941751,
+      "p95_ms": 39174.44978125,
+      "p99_ms": 43634.1687565,
+      "max_ms": 44373.592185
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2560.0,
+     "cutoff_ns": 1792582302190605688,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 18.363564,
+      "p95_ms": 517.814745,
+      "p99_ms": 588.6243655000001,
+      "max_ms": 1199.332985
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 12.9049515,
+      "p95_ms": 21.769365649999997,
+      "p99_ms": 28.727191039999994,
+      "max_ms": 250.960458
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1139993,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925819502000000000,
+    "seq_end": 925819502000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00314704900666,
+    "achieved_rate": 9.996561801100379,
+    "start_ns": 1792581955076727108,
+    "end_ns": 1792582255080122506,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "ca57382be1426443302dd63fd8ca2bf77fa90da7575298f39ddf5c307cc6bcff"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 925819501000000000,
+    "seq_end": 925819501001079986,
+    "n_sent": 1079986,
+    "send_errors": 0,
+    "elapsed_s": 180.00290125000174,
+    "achieved_rate": 5999.825516701162,
+    "start_ns": 1792582015076795560,
+    "end_ns": 1792582195081030195,
+    "n_attempted": 1079986,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "e67b11df5a3dddc5ab01d58ce5a1146237ab705a05e4e27f743f3b42dacd2fd6"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925819500000000000,
+    "seq_end": 925819500000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0032727180005,
+    "achieved_rate": 199.9944849148307,
+    "start_ns": 1792581955076727934,
+    "end_ns": 1792582255080740939,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "46033fcb73f220ebc39c8b4454b5d7c844bec9c2bc54d4d1238ff81b014326ad"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-pipelines-f6000-r1",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 2176539.5,
+    "minimum_khz": 395844,
+    "maximum_khz": 2404642
+   },
+   "host_clock_offset_p99_p01_span_ns": 853,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e3-a-pipelines-f6000-r2": {
+  "result": {
+   "id": "rev27-e3-a-pipelines-f6000-r2",
+   "spec": {
+    "id": "rev27-e3-a-pipelines-f6000-r2",
+    "phase": "E3",
+    "variant": "A-pipelines",
+    "mode": "udp",
+    "repetition": 2,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r2",
+    "sequence_index": 8,
+    "factorial_cell": "shared topic, separate pipelines"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.9410000000000001,
+     "mem_gib": 3.73291015625,
+     "samples": 70
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.0546875,
+     "samples": 70
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.7424999999999999,
+     "mem_gib": 0.060546875,
+     "samples": 70
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.3135,
+     "mem_gib": 1.015625,
+     "samples": 70
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.9159999999999999,
+     "mem_gib": 1.26953125,
+     "samples": 70
+    }
+   },
+   "scheduled_start_ns": 1792585204002974720,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792585552069802793,
+    "end_ns": 1792585564843652837
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792585552069802793,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 57001,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 14333.244021,
+      "p95_ms": 40045.69055,
+      "p99_ms": 42915.374761,
+      "max_ms": 43764.146359
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 19416.465561999998,
+      "p95_ms": 40447.437960899995,
+      "p99_ms": 43093.397240440005,
+      "max_ms": 43764.146359
+     }
+    },
+    "flood": {
+     "n_attempted": 1079971,
+     "n_sent_ok": 1079971,
+     "n_send_errors": 0,
+     "n_first_receipts": 1079971,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 512.0,
+     "cutoff_ns": 1792585552069802793,
+     "full_window": {
+      "n_sent_ok": 990020,
+      "n_first_receipts": 990020,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 20725.7209075,
+      "p95_ms": 39754.51840795,
+      "p99_ms": 41003.25259717,
+      "max_ms": 43008.219835
+     },
+     "flood_window": {
+      "n_sent_ok": 1079971,
+      "n_first_receipts": 1079971,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 19419.370594,
+      "p95_ms": 40449.881623,
+      "p99_ms": 43153.781492500006,
+      "max_ms": 43794.150381
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2560.0,
+     "cutoff_ns": 1792585552069802793,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 18.216302,
+      "p95_ms": 517.0667885,
+      "p99_ms": 587.5948424999999,
+      "max_ms": 1431.248798
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 12.610536,
+      "p95_ms": 21.91228765,
+      "p99_ms": 29.37856925,
+      "max_ms": 232.701556
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1139978,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925851992000000000,
+    "seq_end": 925851992000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.0034718199968,
+    "achieved_rate": 9.996550979248038,
+    "start_ns": 1792585204003120398,
+    "end_ns": 1792585504006893695,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "f7cb96ebcc61dcc3ee8aae004b78eda4d8598439954c6007eb265a1fdd3d9e92"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 925851991000000000,
+    "seq_end": 925851991001079971,
+    "n_sent": 1079971,
+    "send_errors": 0,
+    "elapsed_s": 180.00038499600487,
+    "achieved_rate": 5999.82605606077,
+    "start_ns": 1792585264003055462,
+    "end_ns": 1792585444004849238,
+    "n_attempted": 1079971,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "95227c31078b6dcfa41546aaf6ae4ef084edc4b62ae8bfdc7eac0296f9d06b3e"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925851990000000000,
+    "seq_end": 925851990000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.00343849300407,
+    "achieved_rate": 199.99437440247587,
+    "start_ns": 1792585204003120137,
+    "end_ns": 1792585504007464688,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "fd6784d7df2811abba7900d4546d690be9b430be10ca83964f98bffdfa729349"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-pipelines-f6000-r2",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 2224855.0,
+    "minimum_khz": 397945,
+    "maximum_khz": 2404780
+   },
+   "host_clock_offset_p99_p01_span_ns": 2320,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e3-a-pipelines-f6000-r3": {
+  "result": {
+   "id": "rev27-e3-a-pipelines-f6000-r3",
+   "spec": {
+    "id": "rev27-e3-a-pipelines-f6000-r3",
+    "phase": "E3",
+    "variant": "A-pipelines",
+    "mode": "udp",
+    "repetition": 3,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r3",
+    "sequence_index": 12,
+    "factorial_cell": "shared topic, separate pipelines"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.908,
+     "mem_gib": 3.7216796875,
+     "samples": 70
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.05224609375,
+     "samples": 70
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.7315,
+     "mem_gib": 0.060546875,
+     "samples": 70
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.3305,
+     "mem_gib": 1.02880859375,
+     "samples": 70
+    },
+    "bench-logstash": {
+     "cpu_cores": 1.0145,
+     "mem_gib": 1.4248046875,
+     "samples": 70
+    }
+   },
+   "scheduled_start_ns": 1792587540718877952,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792587887969893060,
+    "end_ns": 1792587900444149697
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792587887969893060,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 57001,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 18224.70932,
+      "p95_ms": 43619.487591,
+      "p99_ms": 46740.825933,
+      "max_ms": 47342.977097
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 26329.860612999997,
+      "p95_ms": 44245.840028599996,
+      "p99_ms": 46923.952308830005,
+      "max_ms": 47342.977097
+     }
+    },
+    "flood": {
+     "n_attempted": 1079996,
+     "n_sent_ok": 1079996,
+     "n_send_errors": 0,
+     "n_first_receipts": 1079996,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 512.0,
+     "cutoff_ns": 1792587887969893060,
+     "full_window": {
+      "n_sent_ok": 990039,
+      "n_first_receipts": 990039,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 26697.780351,
+      "p95_ms": 43294.229446699996,
+      "p99_ms": 46342.97358816,
+      "max_ms": 47190.540263
+     },
+     "flood_window": {
+      "n_sent_ok": 1079978,
+      "n_first_receipts": 1079978,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 26350.036692499998,
+      "p95_ms": 44717.50103705,
+      "p99_ms": 46920.87726029,
+      "max_ms": 47354.721393
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2560.0,
+     "cutoff_ns": 1792587887969893060,
+     "full_window": {
+      "n_sent_ok": 2850,
+      "n_first_receipts": 2850,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 18.442480500000002,
+      "p95_ms": 517.0370706999997,
+      "p99_ms": 584.23802913,
+      "max_ms": 628.027605
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 13.297642,
+      "p95_ms": 22.01742745,
+      "p99_ms": 29.15854169,
+      "max_ms": 218.333708
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1140003,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925875352000000000,
+    "seq_end": 925875352000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00264367400086,
+    "achieved_rate": 9.996578574350417,
+    "start_ns": 1792587540719099339,
+    "end_ns": 1792587840722002851,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "8a9d45e8939ca2f54a5b27532986c4b353e36e01894d49bbcafd440eedb552e2"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 925875351000000000,
+    "seq_end": 925875351001079996,
+    "n_sent": 1079996,
+    "send_errors": 0,
+    "elapsed_s": 180.00448155100457,
+    "achieved_rate": 5999.828397016779,
+    "start_ns": 1792587600719107205,
+    "end_ns": 1792587780724667866,
+    "n_attempted": 1079996,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "44e3809e0461ee63e60621a26ed4a4038d7bbe103777677cc9923502913a0191"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925875350000000000,
+    "seq_end": 925875350000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.00388539599953,
+    "achieved_rate": 199.99407647938438,
+    "start_ns": 1792587540719099219,
+    "end_ns": 1792587840723649747,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "1397f7ea36536028f129423233c569ba2027bd09afaafac29cce10c60adf2d78"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-pipelines-f6000-r3",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 2266096.5,
+    "minimum_khz": 389534,
+    "maximum_khz": 2405882
+   },
+   "host_clock_offset_p99_p01_span_ns": 935,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e3-a-topics-f0-r1": {
+  "result": {
+   "id": "rev27-e3-a-topics-f0-r1",
+   "spec": {
+    "id": "rev27-e3-a-topics-f0-r1",
+    "phase": "E3",
+    "variant": "A-topics",
+    "mode": "udp",
+    "repetition": 1,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r1",
+    "sequence_index": 3,
+    "factorial_cell": "separate topics, shared pipeline"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.0475,
+     "mem_gib": 3.708984375,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.05078125,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.077,
+     "mem_gib": 0.0517578125,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.079,
+     "mem_gib": 0.974609375,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.08,
+     "mem_gib": 1.435546875,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792581391932468480,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792581783348731655,
+    "end_ns": 1792581784063092226
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792581783348731655,
+     "full_window": {
+      "n_sent_ok": 57000,
+      "n_first_receipts": 57000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 883.432523,
+      "p95_ms": 1673.58558305,
+      "p99_ms": 1744.67191155,
+      "max_ms": 1983.265605
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 881.2081275,
+      "p95_ms": 1673.3183433499999,
+      "p99_ms": 1744.58328979,
+      "max_ms": 1794.445677
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 3328.0,
+     "cutoff_ns": 1792581783348731655,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 910.150654,
+      "p95_ms": 1671.316144,
+      "p99_ms": 1738.2777780000001,
+      "max_ms": 1937.663885
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 912.8232674999999,
+      "p95_ms": 1671.6781278,
+      "p99_ms": 1736.22277134,
+      "max_ms": 1788.001313
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925813862000000000,
+    "seq_end": 925813862000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00157690200285,
+    "achieved_rate": 9.996614121063903,
+    "start_ns": 1792581391932682490,
+    "end_ns": 1792581691934465802,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "930dec59c1a45c6b398d9370f1a7f4c8806ead731b21c9bd2bd11df725e704b2"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925813860000000000,
+    "seq_end": 925813860000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.001312553999,
+    "achieved_rate": 199.99579164907962,
+    "start_ns": 1792581391932681580,
+    "end_ns": 1792581691934650034,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "8785bf3bfd8f19f3f4aac1ab69c51174add06fdb13496b50e562400dbfe29b26"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-topics-f0-r1",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 1072243.5,
+    "minimum_khz": 394824,
+    "maximum_khz": 2407090
+   },
+   "host_clock_offset_p99_p01_span_ns": 841,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e3-a-topics-f0-r2": {
+  "result": {
+   "id": "rev27-e3-a-topics-f0-r2",
+   "spec": {
+    "id": "rev27-e3-a-topics-f0-r2",
+    "phase": "E3",
+    "variant": "A-topics",
+    "mode": "udp",
+    "repetition": 2,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r2",
+    "sequence_index": 7,
+    "factorial_cell": "separate topics, shared pipeline"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.058499999999999996,
+     "mem_gib": 3.7431640625,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.0498046875,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.07450000000000001,
+     "mem_gib": 0.052734375,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.07250000000000001,
+     "mem_gib": 0.9453125,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.0795,
+     "mem_gib": 1.548828125,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792584642062091776,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792585033593720691,
+    "end_ns": 1792585034349822193
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792585033593720691,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 57001,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 885.479439,
+      "p95_ms": 1674.470037,
+      "p99_ms": 1744.638298,
+      "max_ms": 1937.935141
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 882.2623980000001,
+      "p95_ms": 1674.3878229,
+      "p99_ms": 1745.5060353700003,
+      "max_ms": 1809.204092
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 3840.0,
+     "cutoff_ns": 1792585033593720691,
+     "full_window": {
+      "n_sent_ok": 2850,
+      "n_first_receipts": 2850,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 904.061561,
+      "p95_ms": 1677.4592191499999,
+      "p99_ms": 1732.1434095299999,
+      "max_ms": 1798.359526
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 908.4427505,
+      "p95_ms": 1681.6723454,
+      "p99_ms": 1731.76503414,
+      "max_ms": 1798.359526
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925846372000000000,
+    "seq_end": 925846372000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.0000359369951,
+    "achieved_rate": 9.996665469166272,
+    "start_ns": 1792584642062175357,
+    "end_ns": 1792584942062435021,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "6fbc636277bcf9c2a1f0fae105e55393968231043e8c2bb72e38c99338a7bc38"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925846370000000000,
+    "seq_end": 925846370000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0045122160009,
+    "achieved_rate": 199.99365861804503,
+    "start_ns": 1792584642062175020,
+    "end_ns": 1792584942067465946,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "4248252bd1048b162acae8ea1821e49473ce3fb7ac866397b43a6d0d4492e8e2"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-topics-f0-r2",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 972810.0,
+    "minimum_khz": 397010,
+    "maximum_khz": 2408695
+   },
+   "host_clock_offset_p99_p01_span_ns": 800,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e3-a-topics-f0-r3": {
+  "result": {
+   "id": "rev27-e3-a-topics-f0-r3",
+   "spec": {
+    "id": "rev27-e3-a-topics-f0-r3",
+    "phase": "E3",
+    "variant": "A-topics",
+    "mode": "udp",
+    "repetition": 3,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 0,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r3",
+    "sequence_index": 11,
+    "factorial_cell": "separate topics, shared pipeline"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.053,
+     "mem_gib": 3.69921875,
+     "samples": 76
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.0537109375,
+     "samples": 76
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.07150000000000001,
+     "mem_gib": 0.0595703125,
+     "samples": 76
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.0845,
+     "mem_gib": 1.033203125,
+     "samples": 76
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.105,
+     "mem_gib": 1.49267578125,
+     "samples": 76
+    }
+   },
+   "scheduled_start_ns": 1792586977520716288,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792587369061448059,
+    "end_ns": 1792587369833548424
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792587369061448059,
+     "full_window": {
+      "n_sent_ok": 57001,
+      "n_first_receipts": 57001,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 883.754353,
+      "p95_ms": 1672.908609,
+      "p99_ms": 1742.982701,
+      "max_ms": 1913.79085
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 881.991229,
+      "p95_ms": 1672.9088170500002,
+      "p99_ms": 1743.01671907,
+      "max_ms": 1789.181835
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 6912.0,
+     "cutoff_ns": 1792587369061448059,
+     "full_window": {
+      "n_sent_ok": 2850,
+      "n_first_receipts": 2850,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 881.6113869999999,
+      "p95_ms": 1675.5041979,
+      "p99_ms": 1739.5927560999999,
+      "max_ms": 1781.907783
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 908.184827,
+      "p95_ms": 1679.4124648,
+      "p99_ms": 1740.11762829,
+      "max_ms": 1765.541062
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 60007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925869722000000000,
+    "seq_end": 925869722000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00270018500305,
+    "achieved_rate": 9.996576691311787,
+    "start_ns": 1792586977520939938,
+    "end_ns": 1792587277523903056,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "6bb543b620097585c8b3aacbb986c92d4e0fdf5f8b71dd7f7036724d4bf19696"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925869720000000000,
+    "seq_end": 925869720000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0015281779997,
+    "achieved_rate": 199.99564790350277,
+    "start_ns": 1792586977520887024,
+    "end_ns": 1792587277523286044,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "2d301b983ddee612d0530260d88ea085c99daefa5b27e6bb1c90f5ec5d0ff828"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-topics-f0-r3",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 985152.0,
+    "minimum_khz": 391559,
+    "maximum_khz": 2406469
+   },
+   "host_clock_offset_p99_p01_span_ns": 922,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e3-a-topics-f6000-r1": {
+  "result": {
+   "id": "rev27-e3-a-topics-f6000-r1",
+   "spec": {
+    "id": "rev27-e3-a-topics-f6000-r1",
+    "phase": "E3",
+    "variant": "A-topics",
+    "mode": "udp",
+    "repetition": 1,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r1",
+    "sequence_index": 1,
+    "factorial_cell": "separate topics, shared pipeline"
+   },
+   "status": "timed_out_incomplete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.013999999999999999,
+     "mem_gib": 3.7763671875,
+     "samples": 181
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.0,
+     "mem_gib": 0.05078125,
+     "samples": 181
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.0,
+     "mem_gib": 0.0537109375,
+     "samples": 181
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.069,
+     "mem_gib": 1.0087890625,
+     "samples": 181
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.008,
+     "mem_gib": 1.26171875,
+     "samples": 181
+    }
+   },
+   "scheduled_start_ns": 1792579735739886080,
+   "scan": {
+    "status": "timed_out_incomplete",
+    "start_ns": 1792580635807799124,
+    "end_ns": 1792580648462299159
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59976,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 23,
+     "received_at_cutoff_status": "incomplete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 1792.0,
+     "cutoff_ns": 1792580635807799124,
+     "full_window": {
+      "n_sent_ok": 57000,
+      "n_first_receipts": 56977,
+      "n_missing_at_cutoff": 23,
+      "missing_pct_at_cutoff": 0.04035087719298246,
+      "p50_ms": 294.428064,
+      "p95_ms": 4701.085447599997,
+      "p99_ms": 9198.742936799998,
+      "max_ms": 9656.583495
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 35977,
+      "n_missing_at_cutoff": 23,
+      "missing_pct_at_cutoff": 0.06388888888888888,
+      "p50_ms": 101.979757,
+      "p95_ms": 6972.492346399997,
+      "p99_ms": 9340.892324359997,
+      "max_ms": 9656.583495
+     }
+    },
+    "flood": {
+     "n_attempted": 1079986,
+     "n_sent_ok": 1079986,
+     "n_send_errors": 0,
+     "n_first_receipts": 1079289,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 697,
+     "received_at_cutoff_status": "incomplete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 256.0,
+     "cutoff_ns": 1792580635807799124,
+     "full_window": {
+      "n_sent_ok": 996691,
+      "n_first_receipts": 995994,
+      "n_missing_at_cutoff": 697,
+      "missing_pct_at_cutoff": 0.06993140301256859,
+      "p50_ms": 103.325638,
+      "p95_ms": 4219.241008049999,
+      "p99_ms": 9381.560289129999,
+      "max_ms": 9660.81247
+     },
+     "flood_window": {
+      "n_sent_ok": 1079986,
+      "n_first_receipts": 1079289,
+      "n_missing_at_cutoff": 697,
+      "missing_pct_at_cutoff": 0.06453787363910272,
+      "p50_ms": 103.000315,
+      "p95_ms": 6973.4911489999995,
+      "p99_ms": 9342.715722719999,
+      "max_ms": 9660.81247
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2816.0,
+     "cutoff_ns": 1792580635807799124,
+     "full_window": {
+      "n_sent_ok": 2850,
+      "n_first_receipts": 2850,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 193.0498855,
+      "p95_ms": 1579.7921709999998,
+      "p99_ms": 2046.564963629994,
+      "max_ms": 3023.527626
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 37.3253865,
+      "p95_ms": 938.73506555,
+      "p99_ms": 2289.05791908,
+      "max_ms": 3023.527626
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1139273,
+     "NoPorts": 0,
+     "InErrors": 720,
+     "RcvbufErrors": 720,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925797302000000000,
+    "seq_end": 925797302000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00262822399964,
+    "achieved_rate": 9.996579089169746,
+    "start_ns": 1792579735740108244,
+    "end_ns": 1792580035742990218,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "ee91a839bd64839f3ccd6df9733f61595161cc0f5718dfc298d08ab861efad53"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 925797301000000000,
+    "seq_end": 925797301001079986,
+    "n_sent": 1079986,
+    "send_errors": 0,
+    "elapsed_s": 180.0027677199978,
+    "achieved_rate": 5999.8299675034195,
+    "start_ns": 1792579795739994742,
+    "end_ns": 1792579976855131796,
+    "n_attempted": 1079986,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "f968a1ea773123c7eb8f6b245f7fb2f13919ae547e077fdcdaed1f2d7c4a8763"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925797300000000000,
+    "seq_end": 925797300000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0028253049968,
+    "achieved_rate": 199.9947831791325,
+    "start_ns": 1792579735740107841,
+    "end_ns": 1792580035743625920,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "80abbabbc153865e7b496759d75b9d643d97810c9f1c554bc0ae23e9452f4b5a"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-topics-f6000-r1",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [
+    "nginx:missing_at_cutoff_23",
+    "flood:missing_at_cutoff_697",
+    "drain_timed_out_distinct_ids_incomplete"
+   ],
+   "frequency_summary": {
+    "median_khz": 644951.5,
+    "minimum_khz": 393552,
+    "maximum_khz": 2411111
+   },
+   "host_clock_offset_p99_p01_span_ns": 2492,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e3-a-topics-f6000-r2": {
+  "result": {
+   "id": "rev27-e3-a-topics-f6000-r2",
+   "spec": {
+    "id": "rev27-e3-a-topics-f6000-r2",
+    "phase": "E3",
+    "variant": "A-topics",
+    "mode": "udp",
+    "repetition": 2,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r2",
+    "sequence_index": 5,
+    "factorial_cell": "separate topics, shared pipeline"
+   },
+   "status": "timed_out_incomplete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.019,
+     "mem_gib": 3.771484375,
+     "samples": 181
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.0,
+     "mem_gib": 0.048828125,
+     "samples": 181
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.0,
+     "mem_gib": 0.0546875,
+     "samples": 181
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.065,
+     "mem_gib": 1.0283203125,
+     "samples": 181
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.008,
+     "mem_gib": 1.4541015625,
+     "samples": 181
+    }
+   },
+   "scheduled_start_ns": 1792582985463509504,
+   "scan": {
+    "status": "timed_out_incomplete",
+    "start_ns": 1792583885538191501,
+    "end_ns": 1792583898333727001
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59083,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 916,
+     "received_at_cutoff_status": "incomplete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792583885538191501,
+     "full_window": {
+      "n_sent_ok": 57000,
+      "n_first_receipts": 56084,
+      "n_missing_at_cutoff": 916,
+      "missing_pct_at_cutoff": 1.6070175438596492,
+      "p50_ms": 258.744285,
+      "p95_ms": 6884.373292399999,
+      "p99_ms": 15833.476538939998,
+      "max_ms": 16167.022024
+     },
+     "flood_window": {
+      "n_sent_ok": 35999,
+      "n_first_receipts": 35551,
+      "n_missing_at_cutoff": 448,
+      "missing_pct_at_cutoff": 1.2444790133059251,
+      "p50_ms": 80.791153,
+      "p95_ms": 7544.018609999999,
+      "p99_ms": 15952.4124915,
+      "max_ms": 16167.022024
+     }
+    },
+    "flood": {
+     "n_attempted": 1079977,
+     "n_sent_ok": 1079977,
+     "n_send_errors": 0,
+     "n_first_receipts": 1066503,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 13474,
+     "received_at_cutoff_status": "incomplete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 512.0,
+     "cutoff_ns": 1792583885538191501,
+     "full_window": {
+      "n_sent_ok": 1016496,
+      "n_first_receipts": 1006531,
+      "n_missing_at_cutoff": 9965,
+      "missing_pct_at_cutoff": 0.9803285010467331,
+      "p50_ms": 72.765177,
+      "p95_ms": 14944.700471,
+      "p99_ms": 15965.3220416,
+      "max_ms": 16170.736358
+     },
+     "flood_window": {
+      "n_sent_ok": 1079977,
+      "n_first_receipts": 1066503,
+      "n_missing_at_cutoff": 13474,
+      "missing_pct_at_cutoff": 1.247619162259937,
+      "p50_ms": 81.320267,
+      "p95_ms": 7541.8311398,
+      "p99_ms": 15953.81916686,
+      "max_ms": 16170.736358
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2560.0,
+     "cutoff_ns": 1792583885538191501,
+     "full_window": {
+      "n_sent_ok": 2850,
+      "n_first_receipts": 2850,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 181.446147,
+      "p95_ms": 1713.51978525,
+      "p99_ms": 6412.895113599976,
+      "max_ms": 9185.655036
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 40.714600000000004,
+      "p95_ms": 1237.2527246999978,
+      "p99_ms": 7459.883559239999,
+      "max_ms": 9185.655036
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1125594,
+     "NoPorts": 0,
+     "InErrors": 14390,
+     "RcvbufErrors": 14390,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925829802000000000,
+    "seq_end": 925829802000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.00003528500383,
+    "achieved_rate": 9.996665490892067,
+    "start_ns": 1792582985463594283,
+    "end_ns": 1792583285463928543,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "a9e1a496dd30ac99f010d197dd4e31d5c04ad729b59a766433d73e71c901012d"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 925829801000000000,
+    "seq_end": 925829801001079977,
+    "n_sent": 1079977,
+    "send_errors": 0,
+    "elapsed_s": 180.00132632600435,
+    "achieved_rate": 5999.8280126226955,
+    "start_ns": 1792583045463737061,
+    "end_ns": 1792583229879213532,
+    "n_attempted": 1079977,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "afbd8c5b30b3342ba457c6d5c8313f1d7dc3331e028638709f66d49edbefb9a7"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925829800000000000,
+    "seq_end": 925829800000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0026779200052,
+    "achieved_rate": 199.99488143235357,
+    "start_ns": 1792582985463732724,
+    "end_ns": 1792583285467226890,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "67820967dc8b973232bf3f5ac4b92eccabbb6145870ee3d2843b5f3937e2b3fd"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-topics-f6000-r2",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [
+    "nginx:missing_at_cutoff_916",
+    "flood:missing_at_cutoff_13474",
+    "drain_timed_out_distinct_ids_incomplete"
+   ],
+   "frequency_summary": {
+    "median_khz": 848594.0,
+    "minimum_khz": 394795,
+    "maximum_khz": 2406997
+   },
+   "host_clock_offset_p99_p01_span_ns": 1496,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e3-a-topics-f6000-r3": {
+  "result": {
+   "id": "rev27-e3-a-topics-f6000-r3",
+   "spec": {
+    "id": "rev27-e3-a-topics-f6000-r3",
+    "phase": "E3",
+    "variant": "A-topics",
+    "mode": "udp",
+    "repetition": 3,
+    "rate": 200,
+    "duration": 300,
+    "warmup": 10,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "flood": {
+     "rate": 6000,
+     "at": 60,
+     "dur": 180,
+     "auth_rate": 10
+    },
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E3-r3",
+    "sequence_index": 9,
+    "factorial_cell": "separate topics, shared pipeline"
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.9840000000000001,
+     "mem_gib": 3.783203125,
+     "samples": 81
+    },
+    "bench-fb-auth": {
+     "cpu_cores": 0.005,
+     "mem_gib": 0.05078125,
+     "samples": 81
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.094,
+     "mem_gib": 0.0625,
+     "samples": 81
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.196,
+     "mem_gib": 1.029296875,
+     "samples": 81
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.606,
+     "mem_gib": 1.453125,
+     "samples": 81
+    }
+   },
+   "scheduled_start_ns": 1792585822724870656,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792586226727776322,
+    "end_ns": 1792586239291665383
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0,
+     "auth": 0
+    },
+    "wrong_source_index_counts": {
+     "nginx": 0,
+     "auth": 0
+    }
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 59999,
+     "n_sent_ok": 59999,
+     "n_send_errors": 0,
+     "n_first_receipts": 59999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2048.0,
+     "cutoff_ns": 1792586226727776322,
+     "full_window": {
+      "n_sent_ok": 57000,
+      "n_first_receipts": 57000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 281.5626015,
+      "p95_ms": 1645.4524808499998,
+      "p99_ms": 2173.6268485300025,
+      "max_ms": 3221.912486
+     },
+     "flood_window": {
+      "n_sent_ok": 36000,
+      "n_first_receipts": 36000,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 86.984568,
+      "p95_ms": 1395.9623018499992,
+      "p99_ms": 2655.81845797,
+      "max_ms": 3221.912486
+     }
+    },
+    "flood": {
+     "n_attempted": 1079988,
+     "n_sent_ok": 1079988,
+     "n_send_errors": 0,
+     "n_first_receipts": 1079988,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 512.0,
+     "cutoff_ns": 1792586226727776322,
+     "full_window": {
+      "n_sent_ok": 990033,
+      "n_first_receipts": 990033,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 86.220485,
+      "p95_ms": 1224.0300577999997,
+      "p99_ms": 2039.104554799999,
+      "max_ms": 2254.391594
+     },
+     "flood_window": {
+      "n_sent_ok": 1079988,
+      "n_first_receipts": 1079988,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 87.8842755,
+      "p95_ms": 1397.9319414499967,
+      "p99_ms": 2657.4030810599997,
+      "max_ms": 3221.931532
+     }
+    },
+    "auth": {
+     "n_attempted": 2999,
+     "n_sent_ok": 2999,
+     "n_send_errors": 0,
+     "n_first_receipts": 2999,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 2560.0,
+     "cutoff_ns": 1792586226727776322,
+     "full_window": {
+      "n_sent_ok": 2851,
+      "n_first_receipts": 2851,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 191.103747,
+      "p95_ms": 1550.3565465,
+      "p99_ms": 1730.9348575,
+      "max_ms": 3061.939631
+     },
+     "flood_window": {
+      "n_sent_ok": 1800,
+      "n_first_receipts": 1800,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 40.082045,
+      "p95_ms": 634.7500282999998,
+      "p99_ms": 1607.2123304699999,
+      "max_ms": 3061.939631
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 1139995,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    },
+    "auth": {
+     "InDatagrams": 3007,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "auth": {
+    "mode": "udp",
+    "kind": "auth",
+    "target_rate": 10.0,
+    "duration_s": 300.0,
+    "seq_start": 925858172000000000,
+    "seq_end": 925858172000002999,
+    "n_sent": 2999,
+    "send_errors": 0,
+    "elapsed_s": 300.0047141889954,
+    "achieved_rate": 9.996509581881789,
+    "start_ns": 1792585822725109574,
+    "end_ns": 1792586122730015872,
+    "n_attempted": 2999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-auth.events.bin",
+    "event_records_sha256": "44d1600342cfb4838ca2685667d686c786aba218e6a39bef5a4cea842cc76e12"
+   },
+   "flood": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 6000.0,
+    "duration_s": 180.0,
+    "seq_start": 925858171000000000,
+    "seq_end": 925858171001079988,
+    "n_sent": 1079988,
+    "send_errors": 0,
+    "elapsed_s": 180.00315591099934,
+    "achieved_rate": 5999.828139313227,
+    "start_ns": 1792585882725043556,
+    "end_ns": 1792586062729599905,
+    "n_attempted": 1079988,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-flood.events.bin",
+    "event_records_sha256": "2cad1f09a0b6f73427bc1fedeec986603b9702ae1557bbb62f4ebc17cd8cbdf7"
+   },
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 200.0,
+    "duration_s": 300.0,
+    "seq_start": 925858170000000000,
+    "seq_end": 925858170000059999,
+    "n_sent": 59999,
+    "send_errors": 0,
+    "elapsed_s": 300.0005320700002,
+    "achieved_rate": 199.9963119598742,
+    "start_ns": 1792585822725111347,
+    "end_ns": 1792586122726396170,
+    "n_attempted": 59999,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "d6d2df97d956af5361d66da71d85e2bd6906c45d7293484f296da7f7240caadd"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e3-a-topics-f6000-r3",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 1837057.0,
+    "minimum_khz": 398023,
+    "maximum_khz": 2405240
+   },
+   "host_clock_offset_p99_p01_span_ns": 2087,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ },
+ "rev27-e4-cost-a-sep-1000-kibana-r1": {
+  "result": {
+   "id": "rev27-e4-cost-a-sep-1000-kibana-r1",
+   "spec": {
+    "id": "rev27-e4-cost-a-sep-1000-kibana-r1",
+    "phase": "E4-cost",
+    "variant": "A-sep",
+    "mode": "udp",
+    "repetition": 1,
+    "rate": 1000,
+    "duration": 600,
+    "warmup": 30,
+    "cooldown": 5,
+    "stable_s": 30,
+    "drain_timeout": 600,
+    "keep_index": false,
+    "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+    "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+    "randomization_seed": 20271019,
+    "kafka_partitions_total": 2,
+    "kafka_consumer_threads_total": 2,
+    "logstash_workers_total": 3,
+    "block": "E4",
+    "sequence_index": 13,
+    "extra_services": [
+     "kibana"
+    ]
+   },
+   "status": "complete",
+   "container_resource_medians": {
+    "bench-es": {
+     "cpu_cores": 0.18100000000000002,
+     "mem_gib": 3.7919921875,
+     "samples": 127
+    },
+    "bench-fb-nginx": {
+     "cpu_cores": 0.185,
+     "mem_gib": 0.060546875,
+     "samples": 127
+    },
+    "bench-kafka": {
+     "cpu_cores": 0.095,
+     "mem_gib": 1.0234375,
+     "samples": 127
+    },
+    "bench-kibana": {
+     "cpu_cores": 0.013999999999999999,
+     "mem_gib": 0.5654296875,
+     "samples": 127
+    },
+    "bench-logstash": {
+     "cpu_cores": 0.20800000000000002,
+     "mem_gib": 1.220703125,
+     "samples": 127
+    }
+   },
+   "scheduled_start_ns": 1792588102291204864,
+   "scan": {
+    "status": "complete",
+    "start_ns": 1792588740279526493,
+    "end_ns": 1792588746697957310
+   },
+   "fault": null,
+   "quality_queries": {
+    "parse_failure_counts": {
+     "nginx": 0
+    },
+    "wrong_source_index_counts": {}
+   },
+   "streams": {
+    "nginx": {
+     "n_attempted": 599997,
+     "n_sent_ok": 599997,
+     "n_send_errors": 0,
+     "n_first_receipts": 599997,
+     "n_duplicate_receipts": 0,
+     "n_missing_at_cutoff": 0,
+     "received_at_cutoff_status": "complete",
+     "confirmed_receiver_drop_count": null,
+     "clock_offset_p99_p01_span_ns": 1536.0,
+     "cutoff_ns": 1792588740279526493,
+     "full_window": {
+      "n_sent_ok": 565005,
+      "n_first_receipts": 565005,
+      "n_missing_at_cutoff": 0,
+      "missing_pct_at_cutoff": 0.0,
+      "p50_ms": 122.046254,
+      "p95_ms": 218.58883719999997,
+      "p99_ms": 232.2340860799999,
+      "max_ms": 365.61072
+     }
+    }
+   },
+   "udp_namespace_counter_deltas": {
+    "nginx": {
+     "InDatagrams": 600005,
+     "NoPorts": 0,
+     "InErrors": 0,
+     "RcvbufErrors": 0,
+     "SndbufErrors": 0
+    }
+   },
+   "telemetry_file": "telemetry.jsonl",
+   "confirmed_receiver_drop_count": null,
+   "note": "Missing at scan is not automatically a confirmed drop"
+  },
+  "generators": {
+   "nginx": {
+    "mode": "udp",
+    "kind": "nginx",
+    "target_rate": 1000.0,
+    "duration_s": 600.0,
+    "seq_start": 925880970000000000,
+    "seq_end": 925880970000599997,
+    "n_sent": 599997,
+    "send_errors": 0,
+    "elapsed_s": 600.0026277689976,
+    "achieved_rate": 999.9906204260828,
+    "start_ns": 1792588102291424533,
+    "end_ns": 1792588702296485950,
+    "n_attempted": 599997,
+    "event_record_bytes": 25,
+    "event_record_format": "<qqqB:seq,wall_ns,monotonic_ns,sent_ok",
+    "event_records_file": "gen-nginx.events.bin",
+    "event_records_sha256": "e27377b7b9bd59d4bcb835dae19fe5492b014404a4a9a7ace958b9598b4a263e"
+   }
+  },
+  "execution_assessment": {
+   "run_id": "rev27-e4-cost-a-sep-1000-kibana-r1",
+   "execution_valid": true,
+   "invalid_reasons": [],
+   "review_flags": [],
+   "frequency_summary": {
+    "median_khz": 1198108.0,
+    "minimum_khz": 397751,
+    "maximum_khz": 2412121
+   },
+   "host_clock_offset_p99_p01_span_ns": 4760,
+   "thermal_throttle_deltas": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+   },
+   "note": "Missing at cutoff and sender errors are reported, never silently reclassified as confirmed receiver loss."
+  }
+ }
+}

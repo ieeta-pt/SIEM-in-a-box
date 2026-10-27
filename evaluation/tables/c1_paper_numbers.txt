@@ -1,0 +1,95 @@
+== P1 outages (UDP 500 EPS)
+('A', 60) n 3 loss 0.00 ± 0.00 lossIn 0.00 ± 0.00 dup 0.00 ± 0.00 rec 3 ± 0 p95pre 462 ± 1 lost_outside [0, 0, 0]
+('A', 300) n 3 loss 0.00 ± 0.00 lossIn 0.00 ± 0.00 dup 0.73 ± 0.53 rec 32 ± 0 p95pre 461 ± 3 lost_outside [0, 0, 0]
+('A', 600) n 3 loss 0.00 ± 0.00 lossIn 0.00 ± 0.00 dup 0.53 ± 0.12 rec 69 ± 1 p95pre 468 ± 7 lost_outside [0, 0, 0]
+('B', 60) n 3 loss 21.45 ± 0.01 lossIn 85.65 ± 0.06 dup 0.00 ± 0.00 rec 0 ± 0 p95pre 326 ± 60 lost_outside [28, 27, 28]
+('B', 300) n 3 loss 60.74 ± 0.03 lossIn 97.16 ± 0.05 dup 0.01 ± 0.02 rec 0 ± 0 p95pre 318 ± 151 lost_outside [29, 2, 27]
+('B', 600) n 3 loss 75.85 ± 0.02 lossIn 98.58 ± 0.02 dup 0.01 ± 0.01 rec 0 ± 0 p95pre 201 ± 96 lost_outside [2, 3, 28]
+('Bdisk', 60) n 3 loss 0.16 ± 0.28 lossIn 0.00 ± 0.00 dup 0.00 ± 0.00 rec 5 ± 4 p95pre 682 ± 570 lost_outside [580, 0, 0]
+('Bdisk', 300) n 3 loss 0.09 ± 0.15 lossIn 0.00 ± 0.00 dup 0.07 ± 0.12 rec 12 ± 4 p95pre 307 ± 67 lost_outside [614, 0, 0]
+('Bdisk', 600) n 3 loss 0.00 ± 0.00 lossIn 0.00 ± 0.00 dup 0.01 ± 0.01 rec 18 ± 4 p95pre 396 ± 140 lost_outside [0, 0, 0]
+('C', 60) n 3 loss 0.00 ± 0.00 lossIn 0.00 ± 0.00 dup 0.00 ± 0.00 rec 10 ± 1 p95pre 1906 ± 13 lost_outside [0, 0, 0]
+('C', 300) n 3 loss 0.00 ± 0.00 lossIn 0.00 ± 0.00 dup 0.01 ± 0.01 rec 65 ± 11 p95pre 1909 ± 28 lost_outside [0, 0, 0]
+('C', 600) n 3 loss 0.00 ± 0.00 lossIn 0.00 ± 0.00 dup 0.01 ± 0.01 rec 194 ± 4 p95pre 1887 ± 20 lost_outside [0, 0, 0]
+== P9 outage-load (UDP 2000 EPS, 10 min)
+p4l-out-a-2000-r1 loss 0.0 lossIn 0.0 outside 0 rec 278 dup 0.092 p95pre 96
+p4l-out-a-2000-r2 loss 0.0 lossIn 0.0 outside 0 rec 260 dup 0.111 p95pre 101
+p4l-out-b-2000-r1 loss 76.863 lossIn 99.66 outside 3051 rec 0 dup 0.002 p95pre 945
+p4l-out-b-2000-r2 loss 76.843 lossIn 99.67 outside 2703 rec 0 dup 0.011 p95pre 221
+p4l-out-bdisk-2000-r1 loss 1.176 lossIn 0.1 outside 17147 rec 149 dup 0.001 p95pre 1740
+p4l-out-bdisk-2000-r2 loss 0.757 lossIn 0.11 outside 10499 rec 150 dup 0.001 p95pre 1150
+== P8 outage-file (file 500 EPS, 10 min)
+p4f-out-a-600-r1 loss 0.0 rec 99 dup 0.646 p95pre 362
+p4f-out-a-600-r2 loss 0.0 rec 101 dup 0.614 p95pre 358
+p4f-out-b-600-r1 loss 0.0 rec 42 dup 0.0 p95pre 253
+p4f-out-b-600-r2 loss 0.0 rec 42 dup 0.0 p95pre 254
+== P4 kafka kill
+p5-kill-a-60-r1 loss 39.01 dup 0.18 lost_window 60.0 162.3 extra_after_restart 42.1
+p5-kill-a-60-r2 loss 35.16 dup 1.98 lost_window 68.7 153.0 extra_after_restart 32.9
+p5-kill-a-60-r3 loss 34.7 dup 0.28 lost_window 60.0 151.9 extra_after_restart 31.8
+p5-kill-a-600-r1 loss 84.13 dup 0.04 lost_window 60.0 724.9 extra_after_restart 64.7
+p5-kill-a-600-r2 loss 80.06 dup 0.64 lost_window 60.0 693.1 extra_after_restart 32.7
+p5-kill-a-600-r3 loss 78.48 dup 0.02 lost_window 60.0 680.8 extra_after_restart 20.5
+== P5 latency (file 1000 EPS)
+('A', False) n 3 p50 150 ± 9 p95 262 ± 10 p99 306 ± 1 max 776 ± 341 SUTcpu 0.43 ± 0.30 SUTmemGiB 5.60 ± 0.05 collector_cpu 0.05 ± 0.02
+('A', True) n 1 p50 1887 p95 3050 p99 3346 max 3580 SUTcpu 0.32 SUTmemGiB 5.51 collector_cpu 0.00
+('B', False) n 3 p50 144 ± 1 p95 256 ± 0 p99 344 ± 10 max 559 ± 6 SUTcpu 0.07 ± 0.00 SUTmemGiB 3.80 ± 0.01 collector_cpu 0.03 ± 0.00
+('B', True) n 1 p50 1836 p95 3043 p99 3350 max 3598 SUTcpu 0.03 SUTmemGiB 3.81 collector_cpu 0.01
+('Bdisk', False) n 3 p50 151 ± 1 p95 261 ± 0 p99 352 ± 44 max 888 ± 565 SUTcpu 0.08 ± 0.00 SUTmemGiB 3.80 ± 0.01 collector_cpu 0.05 ± 0.00
+== P3 ramp (file)
+('A', 1000) loss 0.000 ± 0.000 p50 153 ± 1 p95 264 ± 2 p99 490 ± 373 ingest 999 ± 0 SUTcpu 0.48 ± 0.02 mem 5.70 ± 0.13
+('A', 2000) loss 0.000 ± 0.000 p50 176 ± 1 p95 265 ± 3 p99 696 ± 724 ingest 1999 ± 1 SUTcpu 0.80 ± 0.04 mem 5.99 ± 0.09
+('A', 3000) loss 0.000 ± 0.000 p50 204 ± 1 p95 286 ± 31 p99 790 ± 805 ingest 3001 ± 2 SUTcpu 1.06 ± 0.06 mem 6.29 ± 0.09
+('A', 4000) loss 0.000 ± 0.000 p50 242 ± 8 p95 1802 ± 1841 p99 3205 ± 2864 ingest 3991 ± 10 SUTcpu 1.32 ± 0.02 mem 6.29 ± 0.10
+('A', 6000) loss 0.000 ± 0.000 p50 18653 ± 4259 p95 31735 ± 3835 p99 33987 ± 4712 ingest 4955 ± 70 SUTcpu 1.67 ± 0.04 mem 6.30 ± 0.10
+('A', 8000) loss 0.000 ± 0.000 p50 56872 ± 4538 p95 105017 ± 9496 p99 109797 ± 7276 ingest 4813 ± 150 SUTcpu 1.88 ± 0.03 mem 6.31 ± 0.10
+('B', 1000) loss 0.000 ± 0.000 p50 145 ± 1 p95 257 ± 1 p99 337 ± 6 ingest 1000 ± 0 SUTcpu 0.13 ± 0.01 mem 3.99 ± 0.01
+('B', 2000) loss 0.000 ± 0.000 p50 152 ± 1 p95 263 ± 2 p99 466 ± 224 ingest 2000 ± 1 SUTcpu 0.23 ± 0.00 mem 3.99 ± 0.01
+('B', 3000) loss 0.000 ± 0.000 p50 170 ± 1 p95 263 ± 3 p99 481 ± 220 ingest 3000 ± 1 SUTcpu 0.35 ± 0.01 mem 3.99 ± 0.01
+('B', 4000) loss 0.000 ± 0.000 p50 192 ± 1 p95 813 ± 264 p99 4047 ± 291 ingest 4001 ± 2 SUTcpu 0.46 ± 0.02 mem 3.99 ± 0.01
+('B', 6000) loss 0.000 ± 0.000 p50 233 ± 5 p95 4118 ± 478 p99 5348 ± 843 ingest 5946 ± 12 SUTcpu 0.71 ± 0.02 mem 3.99 ± 0.01
+('B', 8000) loss 0.000 ± 0.000 p50 8409 ± 3437 p95 14581 ± 1678 p99 15034 ± 1744 ingest 7326 ± 67 SUTcpu 0.92 ± 0.01 mem 3.99 ± 0.01
+('Bdisk', 1000) loss 0.000 ± 0.000 p50 159 ± 2 p95 262 ± 2 p99 336 ± 22 ingest 1000 ± 0 SUTcpu 0.13 ± 0.00 mem 3.99 ± 0.01
+('Bdisk', 2000) loss 0.000 ± 0.000 p50 171 ± 1 p95 266 ± 1 p99 473 ± 238 ingest 1999 ± 1 SUTcpu 0.24 ± 0.01 mem 3.99 ± 0.01
+('Bdisk', 3000) loss 0.000 ± 0.000 p50 194 ± 1 p95 269 ± 0 p99 346 ± 9 ingest 2999 ± 2 SUTcpu 0.36 ± 0.02 mem 3.99 ± 0.01
+('Bdisk', 4000) loss 0.000 ± 0.000 p50 209 ± 2 p95 1339 ± 462 p99 4412 ± 299 ingest 4014 ± 26 SUTcpu 0.46 ± 0.02 mem 3.99 ± 0.01
+('Bdisk', 6000) loss 0.000 ± 0.000 p50 253 ± 5 p95 5216 ± 1547 p99 5985 ± 1661 ingest 5892 ± 36 SUTcpu 0.71 ± 0.04 mem 3.99 ± 0.01
+('Bdisk', 8000) loss 0.000 ± 0.000 p50 19053 ± 1111 p95 30815 ± 3113 p99 31917 ± 4134 ingest 6681 ± 173 SUTcpu 0.84 ± 0.04 mem 3.99 ± 0.01
+== P7 ramp (UDP)
+('A', 500) loss 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 245 ± 0 p95 458 ± 1 ingest 500 ± 0 SUTcpu 0.51 ± 0.12 mem 5.82 ± 0.07
+('A', 1000) loss 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 122 ± 0 p95 218 ± 1 ingest 1000 ± 1 SUTcpu 0.49 ± 0.02 mem 6.03 ± 0.05
+('A', 1500) loss 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 81 ± 0 p95 140 ± 2 ingest 1500 ± 0 SUTcpu 0.69 ± 0.05 mem 6.05 ± 0.03
+('A', 2000) loss 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 60 ± 0 p95 100 ± 0 ingest 2000 ± 0 SUTcpu 0.80 ± 0.03 mem 6.08 ± 0.01
+('A', 3000) loss 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 40 ± 0 p95 64 ± 0 ingest 3000 ± 0 SUTcpu 1.09 ± 0.04 mem 6.10 ± 0.02
+('A', 4000) loss 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 34 ± 0 p95 482 ± 73 ingest 3998 ± 5 SUTcpu 1.44 ± 0.03 mem 6.11 ± 0.02
+('C', 500) loss 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 1183 ± 4 p95 1869 ± 28 ingest 502 ± 3 SUTcpu 0.63 ± 0.07 mem 4.03 ± 0.01
+('C', 1000) loss 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 1168 ± 10 p95 1866 ± 4 ingest 1000 ± 3 SUTcpu 1.21 ± 0.03 mem 4.06 ± 0.01
+('C', 1500) loss 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 1364 ± 31 p95 1919 ± 36 ingest 1502 ± 3 SUTcpu 1.94 ± 0.07 mem 4.09 ± 0.02
+('C', 2000) loss 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 49789 ± 6063 p95 61204 ± 7756 ingest 1498 ± 58 SUTcpu 2.42 ± 0.20 mem 4.10 ± 0.02
+('C', 3000) loss 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 145477 ± 9032 p95 178646 ± 16099 ingest 1503 ± 79 SUTcpu 1.59 ± 0.52 mem 4.11 ± 0.02
+('C', 4000) loss 10.62 ± 8.62 [1.15, 18.0, 12.69] p50 242738 ± 11881 p95 309154 ± 13766 ingest 1565 ± 150 SUTcpu 1.13 ± 0.02 mem 4.15 ± 0.04
+== P6 grid
+p2-grid-p1w1-3000 p95 12459 ingest 3015 loss 0.0 cpu 1.39
+p2-grid-p1w1-4000 p95 62041 ingest 2863 loss 0.0 cpu 1.08
+p2-grid-p1w1-6000 p95 201726 ingest 2673 loss 0.0 cpu 1.08
+p2-grid-p1w4-3000 p95 279 ingest 3001 loss 0.0 cpu 1.26
+p2-grid-p1w4-4000 p95 668 ingest 3999 loss 0.0 cpu 1.71
+p2-grid-p1w4-6000 p95 1820 ingest 6000 loss 0.0 cpu 2.48
+p2-grid-p4w1-3000 p95 29227 ingest 2649 loss 0.0 cpu 1.19
+p2-grid-p4w1-4000 p95 72520 ingest 2699 loss 0.0 cpu 1.05
+p2-grid-p4w1-6000 p95 197766 ingest 2635 loss 0.0 cpu 1.07
+p2-grid-p4w4-3000 p95 273 ingest 3000 loss 0.0 cpu 1.36
+p2-grid-p4w4-4000 p95 279 ingest 3999 loss 0.0 cpu 1.62
+p2-grid-p4w4-6000 p95 997 ingest 6003 loss 0.0 cpu 2.47
+== P2 flood
+('A', 0) n 3 atk_lost 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 0.20 ± 0.00 p95 0.34 ± 0.06 max 0.74 ± 0.21 flood_lost 0.00 ± 0.00
+('A', 4000) n 3 atk_lost 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 0.20 ± 0.00 p95 0.30 ± 0.00 max 0.55 ± 0.18 flood_lost 0.00 ± 0.00
+('A', 8000) n 3 atk_lost 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 0.20 ± 0.00 p95 0.67 ± 0.40 max 3.77 ± 2.84 flood_lost 0.58 ± 0.62
+('Bdisk', 0) n 3 atk_lost 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 0.01 ± 0.00 p95 0.35 ± 0.06 max 1.98 ± 0.40 flood_lost 0.00 ± 0.00
+('Bdisk', 4000) n 3 atk_lost 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 0.02 ± 0.01 p95 1.46 ± 0.57 max 6.85 ± 2.49 flood_lost 6.68 ± 1.48
+('Bdisk', 8000) n 3 atk_lost 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 0.02 ± 0.01 p95 2.03 ± 1.50 max 6.13 ± 2.84 flood_lost 13.47 ± 4.08
+('C', 0) n 3 atk_lost 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 1.22 ± 0.02 p95 1.90 ± 0.00 max 2.51 ± 0.73 flood_lost 0.00 ± 0.00
+('C', 4000) n 3 atk_lost 0.00 ± 0.00 [0.0, 0.0, 0.0] p50 193.11 ± 24.11 p95 262.57 ± 40.16 max 266.11 ± 40.92 flood_lost 0.00 ± 0.00
+('C', 8000) n 3 atk_lost 11.44 ± 2.74 [9.78, 14.61, 9.94] p50 354.52 ± 46.96 p95 492.45 ± 59.63 max 507.87 ± 65.10 flood_lost 21.40 ± 5.29
+== P10 storage
+slope all 854.0 slope envelope 820.0 final B/ev 792.9 docs 1799996

@@ -8,6 +8,7 @@ A self-contained, containerised SIEM built on the Elastic Stack with Kafka as a 
 
 - [SIEM-in-a-Box](#siem-in-a-box)
   - [Table of Contents](#table-of-contents)
+  - [Evaluation and Results](#evaluation-and-results)
   - [Repository Structure](#repository-structure)
   - [Core Stack](#core-stack)
     - [Services](#services)
@@ -18,12 +19,12 @@ A self-contained, containerised SIEM built on the Elastic Stack with Kafka as a 
     - [Kafka Topics and Elasticsearch Indices](#kafka-topics-and-elasticsearch-indices)
     - [Logstash Pipelines](#logstash-pipelines)
   - [Collectors](#collectors)
-    - [Filebeat — Linux Auth](#filebeat--linux-auth)
-    - [Filebeat — Linux Auditd](#filebeat--linux-auditd)
-    - [Filebeat — Linux Full (combined)](#filebeat--linux-full-combined)
-    - [Filebeat — Nginx](#filebeat--nginx)
-    - [Winlogbeat — Windows Security](#winlogbeat--windows-security)
-    - [rsyslog — pfSense Firewall](#rsyslog--pfsense-firewall)
+    - [Filebeat - Linux Auth](#filebeat---linux-auth)
+    - [Filebeat - Linux Auditd](#filebeat---linux-auditd)
+    - [Filebeat - Linux Full (combined)](#filebeat---linux-full-combined)
+    - [Filebeat - Nginx](#filebeat---nginx)
+    - [Winlogbeat - Windows Security](#winlogbeat---windows-security)
+    - [rsyslog - pfSense Firewall](#rsyslog---pfsense-firewall)
   - [Fleet Server and Elastic Agent (Terraform)](#fleet-server-and-elastic-agent-terraform)
     - [Agent Policies](#agent-policies)
     - [Running Terraform](#running-terraform)
@@ -85,10 +86,19 @@ The design separates **collection** from **processing**. Collectors on the monit
 
 ---
 
+## Evaluation and Results
+
+The [evaluation index](evaluation/README.md) maps the paper's four research questions to the measured outcomes, figures, and available run-level data. It also explains the variants and measurement boundaries. Start there when reviewing the experimental evidence.
+
+It contains the derived tables behind every number, the results of all 269 runs, and the measurement harness with the frozen protocols and analysis scripts. The raw per-event records are distributed separately because of their size.
+
+---
+
 ## Repository Structure
 
 ```
 SIEM-in-a-box/
+├── evaluation/                     # Results, derived tables, per-run results and measurement harness
 ├── stack/                          # Core Docker Compose stack
 │   ├── docker-compose.yml          # All core services
 │   ├── .env                        # Stack version, passwords, ports
@@ -126,7 +136,7 @@ SIEM-in-a-box/
 │   ├── environments/
 │   │   ├── lab.tfvars              # Values for local lab
 │   │   └── prod.tfvars             # Values for production
-│   └── policies/                   # Terraform module — agent policies
+│   └── policies/                   # Terraform module - agent policies
 │       ├── linux_base.tf           # Generic Linux (metrics + auth/syslog)
 │       ├── linux_security.tf       # Bastion hosts (+ auditd)
 │       ├── linux_web.tf            # Web servers (+ nginx + apache)
@@ -141,7 +151,7 @@ SIEM-in-a-box/
 │   ├── configure-fleet-ssl.sh      # Fleet output SSL + service token setup
 │   ├── kibana-setup.sh             # Create Kibana Data Views via API
 │   ├── data-views.json             # Data View definitions (index patterns)
-│   └── get-certs-details.sh        # Debug helper — inspect generated certs
+│   └── get-certs-details.sh        # Debug helper - inspect generated certs
 │
 └── Makefile                        # Single entry-point for all operations
 ```
@@ -161,7 +171,7 @@ The entire SIEM core lives in `stack/docker-compose.yml`. All services share the
 | `siem-kibana` | `kibana:8.19.7` | Kibana UI, Detection Engine, Fleet management |
 | `siem-kafka` | `bitnamilegacy/kafka:3.7` | KRaft-mode Kafka broker (no ZooKeeper) |
 | `siem-logstash` | `logstash:8.19.7` | Multi-pipeline log processor |
-| `siem-fleet-server` | `elastic-agent:8.19.7` | Fleet Server — enrolment point for Elastic Agents |
+| `siem-fleet-server` | `elastic-agent:8.19.7` | Fleet Server - enrolment point for Elastic Agents |
 
 **Startup order** (enforced by `depends_on` + health checks):
 
@@ -177,8 +187,8 @@ setup (certs ready) → es01 (healthy) → kibana (healthy) → fleet-server
 |---|---|---|---|
 | `9200` | Elasticsearch | HTTPS | REST API, used by Logstash and Kibana |
 | `5601` | Kibana | HTTPS | Web UI and Kibana API |
-| `9094` | Kafka | PLAINTEXT | **External** — collectors on monitored hosts connect here |
-| `9092` | Kafka | PLAINTEXT | Internal — Logstash connects here (inside Docker network) |
+| `9094` | Kafka | PLAINTEXT | **External** - collectors on monitored hosts connect here |
+| `9092` | Kafka | PLAINTEXT | Internal - Logstash connects here (inside Docker network) |
 | `9093` | Kafka | PLAINTEXT | KRaft controller (internal only) |
 | `8220` | Fleet Server | HTTPS | Elastic Agent enrolment |
 | `8200` | APM Server | HTTP | APM ingest (co-located with Fleet Agent) |
@@ -246,24 +256,24 @@ Parse failures in the auditd pipeline go to `logs-linux.audit-parse-errors` for 
 
 Logstash runs in multi-pipeline mode. The manifest `stack/pipeline.yaml` defines each pipeline independently with its own worker count and batch settings. Each pipeline is isolated: a failure in one does not affect the others.
 
-**`nginx.conf`** — Web access and error logs
+**`nginx.conf`** - Web access and error logs
 - Parses the standard nginx combined log format with grok
 - Classifies HTTP status codes into `log.level`: `error` (5xx), `warn` (4xx), `info` (2xx/3xx)
 - Enriches user agent strings with the `useragent` filter
 - Renames fields to ECS: `source.ip`, `url.original`, `http.request.method`, `http.response.status_code`
 
-**`linux-auth.conf`** — SSH and sudo events
+**`linux-auth.conf`** - SSH and sudo events
 - Three grok patterns: SSH accepted login, SSH failed login, sudo command
 - Sets `event.outcome` to `success` or `failure` based on message content
 - Sets `event.category` to `authentication` or `admin`
 
-**`linux-auditd.conf`** — Kernel audit subsystem
+**`linux-auditd.conf`** - Kernel audit subsystem
 - Handles two input formats: structured Auditbeat ECS events and raw `type=SYSCALL msg=audit(...)` lines
 - Parses raw lines with grok then extracts key=value pairs with the `kv` filter
 - Maps auditd event types (`EXECVE`, `USER_LOGIN`, `PATH`…) to ECS categories
 - Failed parses are routed to a separate error index
 
-**`windows-security.conf`** — Windows Event Log
+**`windows-security.conf`** - Windows Event Log
 - Winlogbeat already sends structured JSON, so filtering is enrichment only
 - Maps known Event IDs to ECS fields:
   - `4624` → logon-success (authentication / success)
@@ -271,7 +281,7 @@ Logstash runs in multi-pipeline mode. The manifest `stack/pipeline.yaml` defines
   - `4740` → account-locked (iam / failure)
   - `4672` → privilege-assigned (iam / admin)
 
-**`firewall-pfsense.conf`** — pfSense packet filter logs
+**`firewall-pfsense.conf`** - pfSense packet filter logs
 - Parses syslog filterlog format: rule number, interface, action, direction, IP version
 - Sets `event.category: network`, `observer.type: firewall`
 - Classifies `block` actions as `log.level: warn`
@@ -282,7 +292,7 @@ Logstash runs in multi-pipeline mode. The manifest `stack/pipeline.yaml` defines
 
 Collector configurations live in `collectors/`. Copy the relevant config to the target host and replace `<IP_DO_SIEM>` with the Docker host's IP address.
 
-### Filebeat — Linux Auth
+### Filebeat - Linux Auth
 
 **File:** `collectors/filebeat/linux-auth/filebeat.yaml`
 
@@ -297,7 +307,7 @@ cp collectors/filebeat/linux-auth/filebeat.yaml /etc/filebeat/filebeat.yml
 systemctl enable --now filebeat
 ```
 
-### Filebeat — Linux Auditd
+### Filebeat - Linux Auditd
 
 **File:** `collectors/filebeat/linux-auditd/filebeat.yaml`
 
@@ -310,7 +320,7 @@ systemctl enable --now auditd
 
 Sends raw auditd lines to topic `logs-linux-audit-default`. Logstash performs full parsing. Uses a larger `harvester_buffer_size` (64 KB) because auditd generates high-volume burst writes.
 
-### Filebeat — Linux Full (combined)
+### Filebeat - Linux Full (combined)
 
 **File:** `collectors/filebeat/linux-full/filebeat.yml`
 
@@ -320,11 +330,11 @@ Combines auth, auditd, and syslog into a single Filebeat instance. Uses a `kafka
 |---|---|---|
 | linux-auth | `/var/log/auth.log` | `logs-linux-auth-default` |
 | linux-auditd | `/var/log/audit/audit.log` | `logs-linux-audit-default` |
-| linux-syslog | `/var/log/syslog` | `logs-linux-syslog-default` (disabled — pipeline not yet created) |
+| linux-syslog | `/var/log/syslog` | `logs-linux-syslog-default` (disabled - pipeline not yet created) |
 
 A Docker Compose file is included (`collectors/filebeat/linux-full/docker-compose.yml`) to run Filebeat as a container on the monitored host.
 
-### Filebeat — Nginx
+### Filebeat - Nginx
 
 **File:** `collectors/filebeat/nginx/filebeat.yaml`
 
@@ -332,14 +342,14 @@ Two inputs: `access.log` (fields: `log_type: access`) and `error.log` (fields: `
 
 Includes the bench latency processor that stamps `bench.t_filebeat_ns` (nanoseconds since epoch) on each event, used for pipeline latency measurement.
 
-### Winlogbeat — Windows Security
+### Winlogbeat - Windows Security
 
 **File:** `collectors/winlogbeat/windows-security/winlogbeat.yaml`
 
 Run as a Windows service. Captures from two channels:
 
-- **Security** — Event IDs: 4624, 4625, 4740, 4672, 4648, 4776, 4768, 4769 (logins, lockouts, Kerberos, NTLM)
-- **System** — level: critical, error, warning (last 24h)
+- **Security** - Event IDs: 4624, 4625, 4740, 4672, 4648, 4776, 4768, 4769 (logins, lockouts, Kerberos, NTLM)
+- **System** - level: critical, error, warning (last 24h)
 
 Winlogbeat serialises events as structured JSON, so the Logstash pipeline only needs to enrich (not parse) them.
 
@@ -352,7 +362,7 @@ Winlogbeat serialises events as structured JSON, so the Logstash pipeline only n
 Start-Service winlogbeat
 ```
 
-### rsyslog — pfSense Firewall
+### rsyslog - pfSense Firewall
 
 **File:** `collectors/syslog/pfsense/rsyslog.conf`
 

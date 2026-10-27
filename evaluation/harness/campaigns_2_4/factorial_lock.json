@@ -1,0 +1,13 @@
+{
+ "frozen_at": "2026-10-21T10:42:22.438434+00:00",
+ "campaign_sha256": "f5c00976d08770dbffd37faf1cdb0a2ae73d4765702275febc287c4b4ba3ba17",
+ "cells": 13,
+ "expectations": {
+  "design": "2x2 factorial over Kafka topic separation and Logstash pipeline separation with the same total budget as A-sep/A-shared (2 partitions, 2 consumer threads, 3 workers). A-sep (separate/separate) and A-shared (shared/shared) come from campaign 2; A-topics (separate topics, one shared pipeline) and A-pipelines (one shared topic, one filtering pipeline per source) are the two new cells, 3 repetitions each, with and without the 6,000 EPS web flood.",
+  "H3a": "If topic separation alone protects the attack stream, A-topics keeps auth p95 near 0.30 s under flood while A-pipelines does not.",
+  "H3b": "If pipeline separation alone protects it, A-pipelines keeps auth p95 near 0.30 s while A-topics does not; in A-pipelines every event is read by both consumer groups, so extra consumed volume is expected.",
+  "H3c": "If both are needed, neither new cell matches A-sep.",
+  "cost_cell": "Per-container CPU and memory medians at 1,000 EPS with Kibana idling; Fleet Server and detection rules need Elasticsearch security and remain unmeasured.",
+  "analysis": "Same metrics and windows as campaign 2 (paper_e1_exposure.csv): auth and web p95 of arrivals and share lost in the 60-240 s window, UDP RcvbufErrors per collector, all three runs reported."
+ }
+}

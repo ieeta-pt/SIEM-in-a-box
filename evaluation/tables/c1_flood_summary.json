@@ -1,0 +1,344 @@
+[
+ {
+  "id": "p6-flood-a-0-r1",
+  "variant": "A",
+  "flood": 0,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 205.8612435,
+   "p95_ms": 407.0858302,
+   "max_ms": 803.3193
+  }
+ },
+ {
+  "id": "p6-flood-a-0-r2",
+  "variant": "A",
+  "flood": 0,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 199.5083415,
+   "p95_ms": 301.8216752,
+   "max_ms": 504.123632
+  }
+ },
+ {
+  "id": "p6-flood-a-0-r3",
+  "variant": "A",
+  "flood": 0,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 199.48899999999998,
+   "p95_ms": 320.2722992499963,
+   "max_ms": 898.162071
+  }
+ },
+ {
+  "id": "p6-flood-a-4000-r1",
+  "variant": "A",
+  "flood": 4000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 200.597565,
+   "p95_ms": 303.96763635,
+   "max_ms": 757.531238
+  },
+  "flood_lost_pct": 0.0
+ },
+ {
+  "id": "p6-flood-a-4000-r2",
+  "variant": "A",
+  "flood": 4000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 198.7665465,
+   "p95_ms": 300.8353849,
+   "max_ms": 402.65064
+  },
+  "flood_lost_pct": 0.0
+ },
+ {
+  "id": "p6-flood-a-4000-r3",
+  "variant": "A",
+  "flood": 4000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 198.559136,
+   "p95_ms": 300.75852895,
+   "max_ms": 498.926421
+  },
+  "flood_lost_pct": 0.0
+ },
+ {
+  "id": "p6-flood-a-8000-r1",
+  "variant": "A",
+  "flood": 8000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 200.167915,
+   "p95_ms": 303.7572051,
+   "max_ms": 504.318144
+  },
+  "flood_lost_pct": 0.0
+ },
+ {
+  "id": "p6-flood-a-8000-r2",
+  "variant": "A",
+  "flood": 8000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 198.62496249999998,
+   "p95_ms": 601.6714382,
+   "max_ms": 5704.28283
+  },
+  "flood_lost_pct": 0.5106391844217906
+ },
+ {
+  "id": "p6-flood-a-8000-r3",
+  "variant": "A",
+  "flood": 8000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 198.4730905,
+   "p95_ms": 1105.0225375500002,
+   "max_ms": 5100.212106
+  },
+  "flood_lost_pct": 1.2275170488479037
+ },
+ {
+  "id": "p6-flood-bdisk-0-r1",
+  "variant": "Bdisk",
+  "flood": 0,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 13.0409595,
+   "p95_ms": 284.0641496,
+   "max_ms": 1641.5142
+  }
+ },
+ {
+  "id": "p6-flood-bdisk-0-r2",
+  "variant": "Bdisk",
+  "flood": 0,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 16.7663465,
+   "p95_ms": 371.7004118,
+   "max_ms": 2419.45704
+  }
+ },
+ {
+  "id": "p6-flood-bdisk-0-r3",
+  "variant": "Bdisk",
+  "flood": 0,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 12.611275500000001,
+   "p95_ms": 389.80927164999997,
+   "max_ms": 1889.758606
+  }
+ },
+ {
+  "id": "p6-flood-bdisk-4000-r1",
+  "variant": "Bdisk",
+  "flood": 4000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 6.703595,
+   "p95_ms": 1930.049833399996,
+   "max_ms": 9014.752476
+  },
+  "flood_lost_pct": 6.663277735416139
+ },
+ {
+  "id": "p6-flood-bdisk-4000-r2",
+  "variant": "Bdisk",
+  "flood": 4000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 19.904214500000002,
+   "p95_ms": 826.4664266499993,
+   "max_ms": 4126.224284
+  },
+  "flood_lost_pct": 5.206118341831035
+ },
+ {
+  "id": "p6-flood-bdisk-4000-r3",
+  "variant": "Bdisk",
+  "flood": 4000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 32.004855500000005,
+   "p95_ms": 1632.8517407499996,
+   "max_ms": 7420.618551
+  },
+  "flood_lost_pct": 8.169790303808089
+ },
+ {
+  "id": "p6-flood-bdisk-8000-r1",
+  "variant": "Bdisk",
+  "flood": 8000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 6.40713,
+   "p95_ms": 440.3219177,
+   "max_ms": 2950.932904
+  },
+  "flood_lost_pct": 8.971167180905992
+ },
+ {
+  "id": "p6-flood-bdisk-8000-r2",
+  "variant": "Bdisk",
+  "flood": 8000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 28.3399265,
+   "p95_ms": 2212.6367164499984,
+   "max_ms": 7048.255783
+  },
+  "flood_lost_pct": 14.531899970138262
+ },
+ {
+  "id": "p6-flood-bdisk-8000-r3",
+  "variant": "Bdisk",
+  "flood": 8000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 12.819545,
+   "p95_ms": 3430.5383046999964,
+   "max_ms": 8403.015037
+  },
+  "flood_lost_pct": 16.911600283892437
+ },
+ {
+  "id": "p6-flood-c-0-r1",
+  "variant": "C",
+  "flood": 0,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 1194.1002819999999,
+   "p95_ms": 1900.85583325,
+   "max_ms": 3349.052794
+  }
+ },
+ {
+  "id": "p6-flood-c-0-r2",
+  "variant": "C",
+  "flood": 0,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 1238.235547,
+   "p95_ms": 1895.68487545,
+   "max_ms": 2022.972124
+  }
+ },
+ {
+  "id": "p6-flood-c-0-r3",
+  "variant": "C",
+  "flood": 0,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 1231.745827,
+   "p95_ms": 1900.89355115,
+   "max_ms": 2161.553602
+  }
+ },
+ {
+  "id": "p6-flood-c-4000-r1",
+  "variant": "C",
+  "flood": 4000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 220409.1299085,
+   "p95_ms": 308907.8412051,
+   "max_ms": 313362.557968
+  },
+  "flood_lost_pct": 0.0
+ },
+ {
+  "id": "p6-flood-c-4000-r2",
+  "variant": "C",
+  "flood": 4000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 174744.229813,
+   "p95_ms": 237903.13065195002,
+   "max_ms": 242847.164263
+  },
+  "flood_lost_pct": 0.0
+ },
+ {
+  "id": "p6-flood-c-4000-r3",
+  "variant": "C",
+  "flood": 4000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 0.0,
+   "p50_ms": 184180.915804,
+   "p95_ms": 240886.71003780002,
+   "max_ms": 242130.032756
+  },
+  "flood_lost_pct": 0.0
+ },
+ {
+  "id": "p6-flood-c-8000-r1",
+  "variant": "C",
+  "flood": 8000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 9.777777777777775,
+   "p50_ms": 392807.931823,
+   "p95_ms": 540727.9875069498,
+   "max_ms": 561113.402853
+  },
+  "flood_lost_pct": 15.909709606271216
+ },
+ {
+  "id": "p6-flood-c-8000-r2",
+  "variant": "C",
+  "flood": 8000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 14.611111111111107,
+   "p50_ms": 302120.945166,
+   "p95_ms": 425799.2456496,
+   "max_ms": 435287.880476
+  },
+  "flood_lost_pct": 26.455152853985055
+ },
+ {
+  "id": "p6-flood-c-8000-r3",
+  "variant": "C",
+  "flood": 8000,
+  "auth": {
+   "sent": 1800,
+   "lost_pct": 9.944444444444445,
+   "p50_ms": 368632.535729,
+   "p95_ms": 510826.434345,
+   "max_ms": 527197.791863
+  },
+  "flood_lost_pct": 21.835977729983334
+ }
+]

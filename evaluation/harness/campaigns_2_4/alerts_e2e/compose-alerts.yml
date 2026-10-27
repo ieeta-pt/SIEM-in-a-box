@@ -1,0 +1,59 @@
+# Secured Elasticsearch + Kibana pair for the end-to-end alert cells (campaign 4).
+# Separate compose project ("benchsec") so that the unsecured bench stack is
+# untouched; it joins the existing "bench" network, where Kafka and Logstash
+# of the bench project reach it as bench-es-sec. Kibana's detection engine
+# needs Elasticsearch security (users, API keys) and encryption keys.
+name: benchsec
+
+services:
+  es-sec:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.7
+    container_name: bench-es-sec
+    cpuset: "0-7"
+    mem_limit: 6g
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+      - xpack.security.authc.api_key.enabled=true
+      - ELASTIC_PASSWORD=${BENCH_ES_PASSWORD:-benchsecret}
+      - xpack.ml.enabled=false
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      - ES_JAVA_OPTS=-Xms3g -Xmx3g
+    ulimits:
+      memlock: {soft: -1, hard: -1}
+    volumes: [essecdata:/usr/share/elasticsearch/data]
+    ports: ["127.0.0.1:9202:9200"]
+    networks: [bench]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s -u elastic:${BENCH_ES_PASSWORD:-benchsecret} localhost:9200/_cluster/health | grep -qE '\"status\":\"(green|yellow)\"'"]
+      interval: 5s
+      retries: 60
+
+  kibana-sec:
+    image: docker.elastic.co/kibana/kibana:8.19.7
+    container_name: bench-kibana-sec
+    cpuset: "0-7"
+    mem_limit: 2g
+    depends_on:
+      es-sec: {condition: service_healthy}
+    environment:
+      - ELASTICSEARCH_HOSTS=http://bench-es-sec:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${BENCH_KIBANA_PASSWORD:-kibanasecret}
+      - SERVER_HOST=0.0.0.0
+      - TELEMETRY_ENABLED=false
+      - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=bench-alerts-e2e-encryptedsavedobjects-key-0001
+      - XPACK_SECURITY_ENCRYPTIONKEY=bench-alerts-e2e-security-encryption-key-00001
+      - XPACK_REPORTING_ENCRYPTIONKEY=bench-alerts-e2e-reporting-encryption-key-0001
+    ports: ["127.0.0.1:5602:5601"]
+    networks: [bench]
+
+volumes:
+  essecdata:
+
+networks:
+  bench:
+    external: true
+    name: bench

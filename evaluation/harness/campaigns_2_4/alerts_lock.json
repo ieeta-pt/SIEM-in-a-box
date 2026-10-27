@@ -1,0 +1,14 @@
+{
+ "frozen_at": "2026-10-21T12:57:31.353854+00:00",
+ "campaign_sha256": "3c552c619d0c70156289efa6eb6f87c26200310216d2ed7964962cc105481888",
+ "cells": 12,
+ "expectations": {
+  "design": "A-sep and A-shared, with and without the 6,000 EPS web flood, 3 repetitions, same ingestion settings as campaign 2, but storage is a secured Elasticsearch with Kibana and two enabled detection rules over bench-*.",
+  "metric": "production-to-alert latency per attack event (alert @timestamp minus bseq production time), attack events without an alert, and the times of threshold (brute-force) alerts; all derived from Kibana alert documents, not inferred.",
+  "H5a": "In A-sep every attack event produced during the flood receives an alert, and the alert latency is the ingestion latency plus at most one rule interval (about 60 s) plus rule execution time.",
+  "H5b": "In A-shared the same holds in count, with the extra ingestion delay measured in campaign 2 added to the alert latency.",
+  "H5c": "The threshold rule (>= 5 failed logins on the attacked host within the look-back) raises one alert per minute of attack in both variants, unlike Wazuh's rule 5712 under flood (1-2 firings instead of 4-5).",
+  "caveat": "Kibana and the secured node share the SUT CPUs with the ingestion containers, so throughput and latency are not comparable to campaign 2 figures without stating this.",
+  "indices": "Indices are kept until the alerts are collected 150 s after the run, then deleted, so late rule executions still see the last events."
+ }
+}

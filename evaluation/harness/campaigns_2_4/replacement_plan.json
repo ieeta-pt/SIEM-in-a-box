@@ -1,0 +1,39 @@
+{
+  "created_at_utc": "2026-10-20T08:53:27.314711+00:00",
+  "base_campaign_sha256": "9724a78721a48e8910405fe0a4bad6878835686e08153d699094b28c04e26bea",
+  "policy": "Preserve the invalid run and repeat identical experimental parameters under a new ID; do not alter the frozen 51-cell matrix.",
+  "replacements": [
+    {
+      "original_id": "rev27-e1-c-f6000-r1",
+      "replacement_spec": {
+        "id": "rev27-e1-c-f6000-r1-rep1",
+        "phase": "E1",
+        "variant": "C",
+        "mode": "udp",
+        "repetition": 1,
+        "rate": 200,
+        "duration": 300,
+        "warmup": 10,
+        "cooldown": 5,
+        "stable_s": 30,
+        "drain_timeout": 600,
+        "keep_index": false,
+        "observation_boundary": "indexer_request_receipt_and_final_index_snapshot",
+        "clock_policy": "Turbo off; AC on; common-host wall and monotonic timestamps",
+        "randomization_seed": 20271019,
+        "flood": {
+          "rate": 6000,
+          "at": 60,
+          "dur": 180,
+          "auth_rate": 10
+        },
+        "block": "E1-r1",
+        "sequence_index": 5
+      },
+      "invalid_assessment_sha256": "65f52efc89a5812bccf239a3fef6bd49f39950d754e02d5246707de1b13bebee",
+      "failure_sha256": "a7a928edb55b07607efd52ee825ad8d34dfd327a2196c35b99eec602b64237fa",
+      "raw_sha256": "b92965bf0423d7a37594d2bab59cbe7e0cd60ec85d7ddedd8019a4d6a624e146",
+      "reason": "Predeclared execution invalid: AC was offline in 21 of 184 periodic host samples including final; host wall-minus-monotonic clock offset p99-p1 span was 2147.847 ms, above the 5 ms limit. Preserve the original raw snapshot and repeat this same E1 C/Wazuh flood cell with a fresh ID."
+    }
+  ]
+}

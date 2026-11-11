@@ -3,10 +3,10 @@
 # =============================================================================
 # Uso:
 #   make up              — inicia o stack principal (Variante A)
-#   make up-obs          — inicia o stack de observabilidade
-#   make up-sources      — inicia os contentores de fontes
-#   make down            — para tudo
-#   make status          — mostra estado de todos os serviços
+#   make down            — para o stack (volumes preservados)
+#   make down-volumes    — para o stack e apaga os volumes (perda de dados)
+#   make status          — mostra estado dos serviços e do cluster ES
+#   make verify          — lista índices ES e contagens dos pipelines Logstash
 #
 # Variáveis de ambiente:
 #   ELASTIC_PASSWORD (default: elastic)
@@ -24,13 +24,15 @@ STACK_DIR     := stack/
 # Usar Python do venv se existir, caso contrário python3 do sistema
 PYTHON := $(shell test -f .venv/bin/python3 && echo .venv/bin/python3 || echo python3)
 
-.PHONY: all up down down-volumes down-all status verify help
+.PHONY: up down down-volumes status verify help
 
 help:
 	@echo "SIEM-in-a-Box — alvos disponíveis:"
 	@echo "  make up           — Stack principal (Variante A)"
-	@echo "  make down         — Parar stack principal"
-	@echo "  make status       — Estado de todos os serviços"
+	@echo "  make down         — Parar stack principal (volumes preservados)"
+	@echo "  make down-volumes — Parar stack e apagar volumes (perda de dados)"
+	@echo "  make status       — Estado dos serviços e do cluster ES"
+	@echo "  make verify       — Índices ES e contagens dos pipelines Logstash"
 
 # ── Stack principal ───────────────────────────────────────────────────────────
 up:
@@ -50,25 +52,16 @@ down-volumes:
 	cd $(STACK_DIR) && docker compose down -v
 	@echo ">> AVISO: volumes apagados — certificados e dados perdidos."
 
-# ── Parar tudo ────────────────────────────────────────────────────────────────
-down-all: down down-obs down-sources
-
 # ── Estado ────────────────────────────────────────────────────────────────────
 status:
 	@echo "=== Stack Principal ==="
 	@cd $(STACK_DIR) && docker compose ps 2>/dev/null || echo "  (não iniciado)"
 	@echo ""
-	@echo "=== Observabilidade ==="
-	@cd $(OBS_DIR) && docker compose ps 2>/dev/null || echo "  (não iniciado)"
-	@echo ""
-	@echo "=== Fontes ==="
-	@cd $(SOURCES_DIR) && docker compose ps 2>/dev/null || echo "  (não iniciado)"
-	@echo ""
 	@echo "=== ES Cluster Health ==="
 	@curl -sk -u "$(ELASTIC_USER):$(ELASTIC_PASSWORD)" \
 		"$(ES_URL)/_cluster/health?pretty" 2>/dev/null \
 		| python3 -c "import json,sys; d=json.load(sys.stdin); \
-		print(f'  Status: {d[\"status\"]} | Docs: {d.get(\"number_of_nodes\",\"?\")} node(s)')" \
+		print(f'  Status: {d[\"status\"]} | Nodes: {d.get(\"number_of_nodes\",\"?\")} node(s)')" \
 		2>/dev/null || echo "  (ES não acessível)"
 
 verify:

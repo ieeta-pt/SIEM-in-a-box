@@ -54,7 +54,7 @@ Environment overrides, passed as `make up VAR=value`:
 
 | Script | Purpose |
 | --- | --- |
-| [`scripts/provision-rules.sh`](../scripts/provision-rules.sh) | Waits for Kibana and provisions the detection rules found in `RULES_DIR` into the Detection Engine. |
+| [`scripts/provision-rules.sh`](../scripts/provision-rules.sh) | Waits for Kibana and provisions the detection rules (`.json`, single rule or array, searched recursively) found in `RULES_DIR` into the Detection Engine. `RULES_DIR` defaults to `/rules` (a container path), so set it when running from the host, e.g. `RULES_DIR=./rules ELASTIC_PASSWORD=... ./scripts/provision-rules.sh`. |
 | [`scripts/manage-rules.sh`](../scripts/manage-rules.sh) | CLI to manage rules: `list`, `stats`, `enable`, `disable`, `delete`, `export`, `test`, `create`. |
 
 Both read `KIBANA_HOST` (default `https://localhost:5601`), `ELASTICSEARCH_USERNAME` (default `elastic`), `ELASTIC_PASSWORD` (required) and `VERIFY_SSL` (default `false`).

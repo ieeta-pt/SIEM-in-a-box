@@ -4,7 +4,7 @@
 
 SIEM-in-a-Box is a self-contained, containerised SIEM built on the Elastic Stack, with Kafka as a buffering transport between log collection and processing. The whole core starts with a single `make up` on any machine with Docker.
 
-[Website](https://ieeta-pt.github.io/SIEM-in-a-box/) · [Technical docs](docs/README.md) · [Evaluation](evaluation/README.md)
+ [Technical docs](docs/README.md) · [Evaluation](evaluation/README.md)
 
 ---
 
